@@ -1,0 +1,417 @@
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <div>
+        <style>
+            /*REG Form*/
+.btn{
+    background-color: #3e65a0;
+    color:white;
+}
+            .control-label{
+                color: #3e65a0;
+            }
+       #success_message{ display: none;}
+/*dropdown navbar*/
+ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
+            .navbar-text{
+          
+            font-size: x-large;
+            }
+    /*navbar*/ 
+       .navbar-inverse {
+    background-color: #3e65a0;
+  
+  }
+  .navbar-inverse .navbar-nav>li>a {
+  color:white;
+  font-size: large;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
+  .navbar-inverse .navbar-nav>li>a:hover {
+    background-color: 	 #001a4d;
+    
+  }
+      /*Foter*/
+  .site-footer
+  {
+      background-color: #3e65a0;
+    padding:45px 0 20px;
+    font-size:15px;
+    line-height:24px;
+    color : white;
+  }
+  .site-footer hr
+  {
+    border-top-color:#bbb;
+    opacity:0.5
+  }
+  .site-footer hr.small
+  {
+    margin:20px 0
+  }
+  
+  
+  .footer-links
+  {
+    padding-left:0;
+    list-style:none
+  }
+  .footer-links li
+  {
+    display:block
+  }
+  .footer-links a
+  {
+    color: white;
+  }
+  .footer-links a:active,.footer-links a:focus,.footer-links a:hover
+  {
+    
+      color:darkkhaki;
+     text-decoration: underline;
+    text-decoration:none;
+  }
+  .footer-links.inline li
+  {
+    display:inline-block
+  }
+  .site-footer .social-icons
+  {
+    text-align:right
+  }
+  .site-footer .social-icons a
+  {
+    width:40px;
+    height:40px;
+    line-height:40px;
+    margin-left:6px;
+    margin-right:0;
+    border-radius:100%;
+    background-color:white
+  }
+  .copyright-text
+  {
+    margin:0
+  }
+  @media (max-width:991px)
+  {
+    .site-footer [class^=col-]
+    {
+      margin-bottom:30px
+    }
+  }
+  @media (max-width:767px)
+  {
+    .site-footer
+    {
+      padding-bottom:0
+    }
+    .site-footer .copyright-text,.site-footer .social-icons
+    {
+      text-align:center
+    }
+  }
+  .social-icons
+  {
+    padding-left:0;
+    margin-bottom:0;
+    list-style:none
+  }
+  .social-icons li
+  {
+    display:inline-block;
+    margin-bottom:4px
+  }
+  .social-icons li.title
+  {
+    margin-right:15px;
+    text-transform:uppercase;
+    color:#96a2b2;
+    font-weight:700;
+    font-size:13px
+  }
+  .social-icons a{
+    background-color:#eceeef;
+    color:#818a91;
+    font-size:16px;
+    display:inline-block;
+    line-height:44px;
+    width:44px;
+    height:44px;
+    text-align: center;
+    margin-right:8px;
+    border-radius:100%;
+    -webkit-transition:all .2s linear;
+    -o-transition:all .2s linear;
+    transition:all .2s linear
+  }
+  .social-icons a:active,.social-icons a:focus,.social-icons a:hover
+  {
+    color:#fff;
+    background-color:#29aafe
+  }
+  .social-icons.size-sm a
+  {
+    line-height:34px;
+    height:34px;
+    width:34px;
+    font-size:14px
+  }
+  .social-icons a.facebook:hover
+  {
+    background-color:#3b5998
+  }
+  .social-icons a.twitter:hover
+  {
+    background-color:#00aced
+  }
+  .social-icons a.linkedin:hover
+  {
+    background-color:#007bb6
+  }
+  .social-icons a.dribbble:hover
+  {
+    background-color:#ea4c89
+  }
+  @media (max-width:767px)
+  {
+    .social-icons li.title
+    {
+      display:block;
+      margin-right:0;
+      font-weight:600
+    }
+  }
+            </style>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-text"  href="#">MSIT</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a  href="#">Home</a></li>
+        <li><a  href="#">Subjects</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Add Student</a></li>
+            <li><a href="#">Update/Delete Student</a></li>
+
+          
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Add Teacher</a></li>
+            <li><a href="#">Update/Delete Teacher</a></li>
+
+          
+          </ul>
+        </li>
+       
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+     
+        <li><a  href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--MAIN BODY (REG FORM)-->
+
+              <div class="container">
+
+                    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+                <fieldset>
+                
+                <!-- Form Name -->
+                <legend class="control-label" ><center><h2><b>Student Form</b></h2></center></legend><br>
+                
+                <!-- Text input-->
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Enrollment Number</label>  
+                  <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                  <span class="input-group-addon"><i class="	glyphicon glyphicon-pencil"></i></span>
+                  <input  name="enr_no" placeholder="Enrollment Number" class="form-control"  type="text">
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Text input-->
+                
+                <div class="form-group">
+                  <label class="col-md-4 control-label" >Student Name</label> 
+                    <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input name="st_name" placeholder="Student Name" class="form-control"  type="text">
+                    </div>
+                  </div>
+                </div>
+                  <!-- Text input-->
+                  <div class="form-group"> 
+                  <label class="col-md-4 control-label">Branch</label>
+                    <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="department" class="form-control selectpicker">
+                      <option value="">Select your Branch</option>
+                      <option>CSE-1</option>
+                      <option >CSE-2</option>
+                      <option >CSE-E</option>
+                     
+                    </select>
+                  </div>
+                </div>
+                </div>
+                            <!-- Text input-->
+                            <div class="form-group"> 
+                                <label class="col-md-4 control-label">Year</label>
+                                  <div class="col-md-4 selectContainer">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                  <select name="department" class="form-control selectpicker">
+                                    <option value="">Select your Year</option>
+                                    <option>1st</option>
+                                    <option >2nd</option>
+                                    <option >3rd</option>
+                                    <option >4th</option>
+                                  </select>
+                                </div>
+                              </div>
+                              </div>
+                
+            <!-- Text input-->
+                       <div class="form-group">
+                  <label class="col-md-4 control-label">E-Mail</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                  <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+                    </div>
+                  </div>
+                </div>
+                
+                
+                <!-- Text input-->
+                       
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Contact No.</label>  
+                    <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                  <input name="contact_no" placeholder="(639)" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+                       <!-- Text input-->
+                
+                       <div class="form-group">
+                        <label class="col-md-4 control-label" >Password</label> 
+                          <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="user_password" placeholder="Password" class="form-control"  type="password">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Text input-->
+                
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" >Confirm Password</label> 
+                          <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="confirm_password" placeholder="Confirm Password" class="form-control"  type="password">
+                          </div>
+                        </div>
+                      </div>
+                <!-- Select Basic -->
+                
+                <!-- Success message -->
+                <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+                
+                <!-- Button -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label"></label>
+                  <div class="col-md-4"><br>
+                   <button type="submit" class="btn btn-info" >ADD STUDENT<span class="glyphicon glyphicon-send"></span></button>
+                  </div>
+                </div>
+                
+                </fieldset>
+                </form>
+                </div>
+                    </div><!-- /.container -->
+                    <!--Footer-->
+
+                    <div id="footer" class="footer">
+  
+                        <!-- Site footer -->
+                        <footer class="site-footer">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-sm-12 col-md-4">
+                                <img class="logo" width="100 px" height="100 px" src="https://lh3.googleusercontent.com/proxy/O6iXDSM3KD-8UuJoTD1xUwxdIz_Q6ffB2vdyBRB7EiWGIkJBhhLXN9O6qApfZF-TKBKo5RFw_EOdToD80SY" alt="logo">
+                                <p class="text-justify">Welcome to <i>Assignment Submission Portal</i> of Maharaja Surajmal Institute of  Technology, GGSIPU</p>
+                              </div>
+                      
+                              <div class="col-xs-6 col-md-3 col-md-offset-1">
+                                <h3>Quick Links</h3>
+                                <ul class="footer-links">
+                                  <li><a href="#">Home</a></li>
+                                  <li><a href="#">About Us</a></li>
+                                  <li><a href="#">Vision</a></li>
+                                  <li><a href="#">FAQs</a></li>
+                                  <li><a href="#">Contact Us</a></li>
+                          
+                                </ul>
+                              </div>
+                              <div class="col-xs-6 col-md-4 footer-links">
+                                  <h3>Address</h3>
+                                  
+                                    C-4 Janak Puri, New Delhi, Delhi 110058, India<br />
+                                     <i class="glyphicon glyphicon-earphone"></i> Phone: 011-25528117, 011-25552667<br />
+                                    <i class="glyphicon glyphicon-envelope"></i> Email: <a href="mailto:sdirector@msit.in">sdirector@msit.in</a><br />
+                                   
+                      
+                                </div>
+                            </div>
+                            <hr>
+                          </div>
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-8 col-sm-6 col-xs-12">
+                                <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved 
+                                </p>
+                              </div>
+                      
+                              <div class="col-md-4 col-sm-6 col-xs-12">
+                                <ul class="social-icons">
+                                  <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                  <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                  <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                                  <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                      </footer>
+                      </div>
+               

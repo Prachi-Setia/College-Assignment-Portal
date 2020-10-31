@@ -1,0 +1,313 @@
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <div>
+        <style>
+                .modal-content{
+			background-color: #3e65a0;
+      margin-top: 100px;
+      margin-bottom: 100px;
+		}
+		.btn-link{
+			color:white;
+		}
+        .btn-link:hover{
+			color:white;
+            text-decoration: underline;
+		}
+		.modal-heading h2{
+			color:#ffffff;
+		}
+
+ 
+            .navbar-text{
+          
+            font-size: x-large;
+            }
+     
+       .navbar-inverse {
+    background-color: #3e65a0;
+  
+  }
+  .navbar-inverse .navbar-nav>li>a {
+  color:white;
+  font-size: large;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+  }
+  .navbar-inverse .navbar-nav>li>a:hover {
+    background-color: 	 #001a4d;
+    
+  }
+  
+  .site-footer
+  {
+      background-color: #3e65a0;
+    padding:45px 0 20px;
+    font-size:15px;
+    line-height:24px;
+    color : white;
+  }
+  .site-footer hr
+  {
+    border-top-color:#bbb;
+    opacity:0.5
+  }
+  .site-footer hr.small
+  {
+    margin:20px 0
+  }
+  
+  
+  .footer-links
+  {
+    padding-left:0;
+    list-style:none
+  }
+  .footer-links li
+  {
+    display:block
+  }
+  .footer-links a
+  {
+    color: white;
+  }
+  .footer-links a:active,.footer-links a:focus,.footer-links a:hover
+  {
+    
+      color:darkkhaki;
+     text-decoration: underline;
+    text-decoration:none;
+  }
+  .footer-links.inline li
+  {
+    display:inline-block
+  }
+  .site-footer .social-icons
+  {
+    text-align:right
+  }
+  .site-footer .social-icons a
+  {
+    width:40px;
+    height:40px;
+    line-height:40px;
+    margin-left:6px;
+    margin-right:0;
+    border-radius:100%;
+    background-color:white
+  }
+  .copyright-text
+  {
+    margin:0
+  }
+  @media (max-width:991px)
+  {
+    .site-footer [class^=col-]
+    {
+      margin-bottom:30px
+    }
+  }
+  @media (max-width:767px)
+  {
+    .site-footer
+    {
+      padding-bottom:0
+    }
+    .site-footer .copyright-text,.site-footer .social-icons
+    {
+      text-align:center
+    }
+  }
+  .social-icons
+  {
+    padding-left:0;
+    margin-bottom:0;
+    list-style:none
+  }
+  .social-icons li
+  {
+    display:inline-block;
+    margin-bottom:4px
+  }
+  .social-icons li.title
+  {
+    margin-right:15px;
+    text-transform:uppercase;
+    color:#96a2b2;
+    font-weight:700;
+    font-size:13px
+  }
+  .social-icons a{
+    background-color:#eceeef;
+    color:#818a91;
+    font-size:16px;
+    display:inline-block;
+    line-height:44px;
+    width:44px;
+    height:44px;
+    text-align: center;
+    margin-right:8px;
+    border-radius:100%;
+    -webkit-transition:all .2s linear;
+    -o-transition:all .2s linear;
+    transition:all .2s linear
+  }
+  .social-icons a:active,.social-icons a:focus,.social-icons a:hover
+  {
+    color:#fff;
+    background-color:#29aafe
+  }
+  .social-icons.size-sm a
+  {
+    line-height:34px;
+    height:34px;
+    width:34px;
+    font-size:14px
+  }
+  .social-icons a.facebook:hover
+  {
+    background-color:#3b5998
+  }
+  .social-icons a.twitter:hover
+  {
+    background-color:#00aced
+  }
+  .social-icons a.linkedin:hover
+  {
+    background-color:#007bb6
+  }
+  .social-icons a.dribbble:hover
+  {
+    background-color:#ea4c89
+  }
+  @media (max-width:767px)
+  {
+    .social-icons li.title
+    {
+      display:block;
+      margin-right:0;
+      font-weight:600
+    }
+  }
+  
+        </style>
+    </div>
+  <div>
+      <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand navbar-text"  href="#">MSIT</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li ><a  href="#">Home</a></li>
+              <li><a  href="#">About Us</a></li>
+              <li><a  href="#">Vision</a></li>
+                <li><a  href="#">FAQs</a></li>
+                <li><a  href="#">Contact Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a  href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a  href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-heading">
+                    <h2 class="text-center">Login</h2>
+                </div>
+                <hr />
+                <div class="modal-body">
+                    <form action="" role="form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="User Name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input type="password" class="form-control" placeholder="Password" />
+        
+                            </div>
+        
+                        </div>
+        
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-info btn-lg">Login</button>
+                            <a href="#" class="btn btn-link">forget Password</a>
+                        </div>
+        
+                    </form>
+                </div>
+            </div>
+        </div>
+  <div id="footer" class="footer">
+  
+    <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <img class="logo" width="100 px" height="100 px" src="https://lh3.googleusercontent.com/proxy/O6iXDSM3KD-8UuJoTD1xUwxdIz_Q6ffB2vdyBRB7EiWGIkJBhhLXN9O6qApfZF-TKBKo5RFw_EOdToD80SY" alt="logo">
+            <p class="text-justify">Welcome to <i>Assignment Submission Portal</i> of Maharaja Surajmal Institute of  Technology, GGSIPU</p>
+          </div>
+  
+          <div class="col-xs-6 col-md-3 col-md-offset-1">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Vision</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Contact Us</a></li>
+      
+            </ul>
+          </div>
+          <div class="col-xs-6 col-md-4 footer-links">
+              <h3>Address</h3>
+              
+                C-4 Janak Puri, New Delhi, Delhi 110058, India<br />
+                 <i class="glyphicon glyphicon-earphone"></i> Phone: 011-25528117, 011-25552667<br />
+                <i class="glyphicon glyphicon-envelope"></i> Email: <a href="mailto:sdirector@msit.in">sdirector@msit.in</a><br />
+               
+  
+            </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved 
+            </p>
+          </div>
+  
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+  </footer>
+  </div>
+      </div>
