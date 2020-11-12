@@ -13,8 +13,146 @@
 </head>
 <div>
     <style>
-      .add-button{
-        margin-top:50px;
+    /*modal*/
+    .modal-content{
+        width:70%;
+        height:80%;
+left:150px;
+
+      }
+      .close{
+        margin-top:20px;
+        margin-right:20px;
+      }
+      /* FORM */
+      button,
+input {
+border: none;
+outline: none;
+}
+
+/****************
+FORM
+*****************/
+.signup {
+background-color: white;
+width: 100%;
+max-width: 500px;
+padding: 50px 70px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-top:10px;
+margin-bottom: 30px;
+border-radius: 20px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+h3 {
+text-align: center;
+color: #3e65a0;
+}
+h2 {
+text-align: center;
+font-size: 1.2rem;
+font-weight: lighter;
+
+margin-bottom: 40px;
+}
+
+h2 span {
+text-decoration: underline;
+cursor: pointer;
+color: #3e65a0;
+}
+
+/*  Field */
+.signup__field {
+display: flex;
+flex-direction: column;
+width: 100%;
+position: relative;
+margin-bottom: 40px;
+}
+
+.signup__field:before {
+content: "";
+display: inline-block;
+position: absolute;
+width: 0px;
+height: 2px;
+background: #3e65a0;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+transition: all 0.4s ease;
+}
+
+.signup__field:hover:before {
+width: 100%;
+}
+
+/*  Input */
+.signup__input {
+width: 100%;
+height: 100%;
+font-size: 1.2rem;
+padding: 10px 2px 0;
+border-bottom: 2px solid #e0e0e0;
+}
+
+/*  Label */
+.signup__label {
+color: #bdbdbd;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 2px;
+font-size: 1.2rem;
+transition: all 0.3s ease;
+}
+
+.signup__input:focus + .signup__label,
+.signup__input:valid + .signup__label {
+top: 0;
+font-size: 1rem;
+background-color: white;
+}
+
+ /*top navbar*/
+
+
+        
+   
+ .navbar-inverse {
+  background-color: #3e65a0;
+
+}
+.navbar-inverse .navbar-nav>li>a {
+color:white;
+font-size: medium;
+
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+  color:darkkhaki;
+  
+}
+/*  Button */
+button {
+background: #3e65a0;
+color: white;
+padding: 12px 0;
+font-size: 1.2rem;
+border-radius: 25px;
+cursor: pointer;
+}
+
+.signup button:hover {
+background: #325181;
+}
+ .add-button{
+        margin-top:30px;
     
       }
         /*Table */
@@ -703,49 +841,9 @@ display:inline-block
 
             
 
-            <li class="menu-hasdropdown">
-                <a href="#">Teacher</a><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
-
-                <label title="toggle menu" for="teacher">
-    <span class="downarrow"><i class="fa fa-caret-down"></i></span>
-  </label>
-                <input type="checkbox" class="sub-menu-checkbox" id="teacher" />
-
-                <ul class="sub-menu-dropdown">
-                    <li><a href="">Add Teacher</a></li>
-                    <li><a href="">Delete/Edit Teacher</a></li>
-            
-                </ul>
-            </li>
-            <li class="menu-hasdropdown">
-                <a href="#">Student</a><span class="icon"><i class="fas fa-user-graduate"></i></span>
-
-                <label title="toggle menu" for="student">
-    <span class="downarrow"><i class="fa fa-caret-down"></i></span>
-  </label>
-                <input type="checkbox" class="sub-menu-checkbox" id="student" />
-
-                <ul class="sub-menu-dropdown">
-                    <li><a href="">Add Student</a></li>
-                    <li><a href="">Delete/Edit Student</a></li>
-            
-                </ul>
-            </li>
-            <li class="menu-hasdropdown">
-                <a href="#">Courses</a><span class="icon"><i class="fas fa-book-open"></i></span>
-
-                <label title="toggle menu" for="courses">
-    <span class="downarrow"><i class="fa fa-caret-down"></i></span>
-  </label>
-                <input type="checkbox" class="sub-menu-checkbox" id="courses" />
-
-                <ul class="sub-menu-dropdown">
-                    <li><a href="">Add Course</a></li>
-                    <li><a href="">Delete/Edit Course</a></li>
-            
-                </ul>
-            </li>
-           
+            <li><a href="#">Teacher</a><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span></li>
+            <li ><a href="#">Student</a><span class="icon"><i class="fas fa-user-graduate"></i></span>  </li>
+            <li > <a href="#">Subjects</a><span class="icon"><i class="fas fa-book-open"></i></span>  </li>
             <li><a href="#">Profile</a><span class="icon"><i class="fas fa-user"></i></span></li>
             <li><a href="#">Logout</a><span class="icon"><i class="fas fa-sign-out-alt"></i></span></li>
 
@@ -756,52 +854,94 @@ display:inline-block
 </nav>
 
 </div>
+    <!--Top navbar-->
+    <nav class="navbar navbar-inverse ">
+      <div class="container-fluid">
+       
+        <ul class="nav navbar-nav">
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+
+          <li><a  href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      </div>
+    </nav>
 
 <!--MAIN BODY (Table)-->
 
   
           <div class="new-wrapper">
-<a href="" class="btn btn-primary add-button  col-md-offset-11">+ New</a>
-            <table>
+            <a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" data-toggle="modal" data-target="#NewTeacher"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Teacher</a>
+            <div class="modal fade" id="NewTeacher" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <form class="signup" onsubmit="return false" autocomplete="off">
+                    <h3>Teaher Form</h3>
+                   <br/>
+                  
+                    <div class="signup__field">
+                      <input class="signup__input" type="text" name="Teacher Id" id="Teacher_id" required />
+                      <label class="signup__label" for="teacher_id">Teacher Id</label>
+                    </div>
+                  
+                    <div class="signup__field">
+                      <input class="signup__input" type="text" name="name" id="name" required />
+                      <label class="signup__label" for="name">Teacher Name</label>
+                    </div>
+                    <div class="signup__field">
+                      <input class="signup__input" type="text" name="department" id="department" required />
+                      <label class="signup__label" for="department">Department</label>
+                    </div>
+                    
+                  
+                  
+                    <div class="signup__field">
+                      <input class="signup__input" type="text" name="email" id="email" required />
+                      <label class="signup__label" for="email">Email</label>
+                    </div>
+                    <div class="signup__field">
+                      <input class="signup__input" type="text" name="contact_no" id="contact_no" required />
+                      <label class="signup__label" for="contact_no">Contact Number</label>
+                    </div>
+                  
+                    <div class="signup__field">
+                      <input class="signup__input" type="password" name="password" id="password" required />
+                      <label class="signup__label" for="password">Password</label>
+                    </div>
+                    <div class="signup__field">
+                      <input class="signup__input" type="password" name="con_password" id="con_password" required />
+                      <label class="signup__label" for="con_password">Confirm Password</label>
+                    </div>
+                    <button>Add <span class="glyphicon glyphicon-send"></span></button>
+                  </form>
+                </div>
+                
+              </div>
+            </div>
+<div style="overflow-x:auto;">    
+         <table>
               <thead>
                 <tr>
-                  <th>Enr. No.</th>
+                  <th>Teacher ID</th>
                   <th>Name</th>
-                  <th>Batch</th>
-                  <th>Stream</th>
-                  <th>Section</th>
-                        <th>Email</th>
+                  <th>Department</th>
+                    <th>Email</th>
                         <th>Contact No.</th>
-                        <th></th>
-                        <th></th>
-               
+          <th></th>
+          <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>ankit</td>
-                  <td>2017</td>
+                  <td>XYZ</td>
                   <td>CSE</td>
-                  <td>1-C</td>
-                        <td>abc@gmail.com</td>
-                        <td>9999999</td>
-                  <td>
-                    <button type="button" class="btn btn-primary btn-xs dt-edit" >
-                    Edit
-                    </button>
-                   
-                  </td>
-                  <td> <button type="button" class="btn btn-danger btn-xs dt-delete">
-                  Delete
-                  </button></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>ankit</td>
-                  <td>2017</td>
-                  <td>CSE</td>
-                  <td>1-C</td>
+                
                         <td>abc@gmail.com</td>
                         <td>9999999</td>
                         <td>
@@ -816,10 +956,9 @@ display:inline-block
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>ankit</td>
-                  <td>2017</td>
-                  <td>CSE</td>
-                  <td>1-C</td>
+                  <td>XYZ</td>
+                        <td>CSE</td>
+              
                         <td>abc@gmail.com</td>
                         <td>9999999</td>
                         <td>
@@ -834,10 +973,9 @@ display:inline-block
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>ankit</td>
-                  <td>2017</td>
-                  <td>CSE</td>
-                  <td>1-C</td>
+                  <td>XYZ</td>
+                        <td>CSE</td>
+                  
                         <td>abc@gmail.com</td>
                         <td>9999999</td>
                         <td>
@@ -853,7 +991,7 @@ display:inline-block
               
               </tbody>
             </table>
-          
+          </div>
               <div id="main-contents">
      <div class="registeration-form">
 

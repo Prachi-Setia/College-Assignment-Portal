@@ -1,0 +1,629 @@
+<head>
+  <!-- Fas Icons -->
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div>
+    <style>
+      /*modal*/
+      .modal-content{
+        width:60%;
+        height:40%;
+ left: 200px;
+
+      }
+      .close{
+        margin-top:20px;
+        margin-right:20px;
+      }
+      /* FORM */
+      button,
+input {
+border: none;
+outline: none;
+}
+
+/****************
+FORM
+*****************/
+.signup {
+background-color: white;
+width: 100%;
+max-width: 500px;
+padding: 50px 70px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-top:10px;
+margin-bottom: 30px;
+border-radius: 20px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+h3 {
+text-align: center;
+color: #3e65a0;
+}
+h2 {
+text-align: center;
+font-size: 1.2rem;
+font-weight: lighter;
+
+margin-bottom: 40px;
+}
+
+h2 span {
+text-decoration: underline;
+cursor: pointer;
+color: #3e65a0;
+}
+
+/*  Field */
+.signup__field {
+display: flex;
+flex-direction: column;
+width: 100%;
+position: relative;
+margin-bottom: 40px;
+}
+
+.signup__field:before {
+content: "";
+display: inline-block;
+position: absolute;
+width: 0px;
+height: 2px;
+background: #3e65a0;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+transition: all 0.4s ease;
+}
+
+.signup__field:hover:before {
+width: 100%;
+}
+
+/*  Input */
+.signup__input {
+width: 100%;
+height: 100%;
+font-size: 1.2rem;
+padding: 10px 2px 0;
+border-bottom: 2px solid #e0e0e0;
+}
+
+/*  Label */
+.signup__label {
+color: #bdbdbd;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 2px;
+font-size: 1.2rem;
+transition: all 0.3s ease;
+}
+
+.signup__input:focus + .signup__label,
+.signup__input:valid + .signup__label {
+top: 0;
+font-size: 1rem;
+background-color: white;
+}
+
+
+/*  Button */
+button {
+background: #3e65a0;
+color: white;
+padding: 12px 0;
+font-size: 1.2rem;
+border-radius: 25px;
+cursor: pointer;
+}
+
+.signup button:hover {
+background: #325181;
+}
+ .add-button{
+        margin-top:30px;
+    
+      }
+/*CARD*/
+
+.column {
+float: left;
+width: 25%;
+
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+.column {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+}
+}
+
+/* Style the counter cards */
+.card {
+color:#325181;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+padding: 16px;
+text-align: center;
+background-color: #e6e6e6;
+height:150px;
+margin-left: 80pt;
+margin-bottom: 30pt;
+}
+
+.card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+ /*top navbar*/
+
+
+        
+   
+     .navbar-inverse {
+  background-color: #3e65a0;
+
+}
+.navbar-inverse .navbar-nav>li>a {
+color:white;
+font-size: medium;
+
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+  color:darkkhaki;
+  
+}
+
+
+
+/*Breadcrumb*/
+
+
+.breadcrumb{
+  background-color:white;
+  font-size:12px;
+}
+
+
+
+
+
+
+
+/* Resposive Typography */
+
+
+body,
+.primary-nav
+button,
+input,
+select,
+optgroup,
+textarea {
+color: #000;
+font-size: 1em;
+line-height: 1.5;
+font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+clear: both;
+font-weight: 800;
+}
+
+dfn, cite, em, i {
+font-style: italic;
+}
+
+blockquote {
+margin: 0 1.5em;
+}
+
+address {
+margin: 0 0 1.5em;
+}
+
+pre {
+background: #eee;
+font-family: "Courier 10 Pitch", Courier, monospace;
+font-size: 15px;
+font-size: 0.9375rem;
+line-height: 1.6;
+margin-bottom: 1.6em;
+max-width: 100%;
+overflow: auto;
+padding: 1.6em;
+}
+
+code, kbd, tt, var {
+font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+font-size: 15px;
+font-size: 0.9375rem;
+}
+
+abbr, acronym {
+border-bottom: 1px dotted #666;
+cursor: help;
+}
+
+mark, ins {
+background: #fff9c0;
+text-decoration: none;
+}
+
+big {
+font-size: 125%;
+}
+
+.light {
+color:#ddd;
+}
+
+strong {
+font-weight: 600;
+}
+
+cite,
+em,
+i {
+font-style: italic;
+}
+
+p.big {
+font-size: 140%;
+line-height: 1.3em;
+}
+
+p.small {
+font-size: 80%;
+}
+
+blockquote {
+display:block;
+margin: 1em 20px;
+padding: 0 1em;
+position:relative;
+}
+
+blockquote:before {
+
+}
+
+blockquote cite,
+blockquote em,
+blockquote i {
+font-style: italic;
+}
+
+abbr,
+acronym {
+border-bottom: 1px dotted #666;
+cursor: help;
+}
+
+sup,
+sub {
+height: 0;
+line-height: 1;
+vertical-align: baseline;
+position: relative;
+}
+
+sup {
+bottom: 1ex;
+}
+
+sub {
+top: .5ex;
+}
+
+
+p {
+font-size: 1em;
+margin: 0 0 2em 0;
+}
+
+article:last-of-type, p:last-of-type {
+margin-bottom: 0;
+}
+
+p.intro {
+font-size:1.25em;
+line-height: 1.5;
+font-weight:300;
+ margin: 0 0 1.5em 0;
+}
+
+h1, h2 {
+letter-spacing: -1px;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+margin: 0 0 0.5em 0;
+line-height: 1.1;
+}
+
+h1, .h1 {font-size: 2.074em;}
+
+h2, .h2 {font-size: 1.728em;}
+
+h3, .h3 {font-size: 1.44em;}
+
+h4, .h4 {font-size: 1.2em;}
+
+
+
+/* Medium Screen Typography - Scale: 1.333 Perfect Fourth (thanks http://type-scale.com/)  */
+
+@media screen and (min-width: 42em) {
+
+h1, .h1 { letter-spacing: -2px; }
+
+h1, .h1 {font-size: 3.157em;}
+
+h2, .h2 {font-size: 2.369em;}
+
+h3, .h3 {font-size: 1.777em;}
+
+h4, .h4 {font-size: 1.333em;}
+
+p { font-size:1.0625em; }
+
+p.intro { font-size:1.3em; }
+
+}
+
+
+/* Large Screen Typography  - Scale: 1.414 Augmented Fourth (thanks http://type-scale.com/)  */
+
+@media screen and (min-width: 72em) {
+
+h1 { letter-spacing: -3px; }
+
+h1, .h1 { margin-bottom: 0.35em; font-size: 3.998em; }
+
+h2, .h2  { font-size: 2.827em; }
+
+h3, .h3 { font-size: 1.999em; }
+
+h4, .h4 { font-size: 1.414em; }
+
+p { font-size:1.125em; }
+
+p.intro { font-size:1.4em; }
+
+}
+
+
+
+
+
+  /*Footer*/
+.site-footer
+{ bottom: 0;
+width:100%;
+
+  background-color: #3e65a0;
+padding:45px 0 20px;
+font-size:12px;
+line-height:24px;
+color : white;
+}
+.site-footer hr
+{
+border-top-color:#bbb;
+opacity:0.5
+}
+.site-footer hr.small
+{
+margin:20px 0
+}
+
+
+.footer-links
+{
+padding-left:0;
+list-style:none
+}
+.footer-links li
+{
+display:block
+}
+.footer-links a
+{
+color: white;
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+
+  color:darkkhaki;
+ text-decoration: underline;
+text-decoration:none;
+}
+.footer-links.inline li
+{
+display:inline-block
+}
+
+        </style>
+
+
+
+
+  
+          <div class="new-wrapper">
+
+                <!--Top navbar-->
+              <nav class="navbar navbar-inverse ">
+                  <div class="container-fluid">
+                   
+                    <ul class="nav navbar-nav">
+                   </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                    <li><a  href="#"><span class="	fas fa-book-open"></span> Subjects</a></li>
+                      <li><a  href="#"><span class="fas fa-user"></span> Profile</a></li>
+                      <li><a  href="#"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+                    </ul>
+                  </div>
+                </nav>
+                <!--MAIN BODY-->
+              
+                <nav >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Assignments</li>
+                    <li class="breadcrumb-item"><a href="#">Students</a></li>
+                   
+                  </ol>
+                </nav>
+<a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" data-toggle="modal" data-target="#NewAssignment"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Assignment</a>
+      <!-- Modal -->   
+<div class="modal fade" id="NewAssignment" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <form class="signup" onsubmit="return false" autocomplete="off">
+        <h3>ADD ASSIGNMENT</h3>
+       <br/>
+      
+        <div class="signup__field">
+          <input class="signup__input" type="text" name="subject_name" id="subject_name" required />
+          <label class="signup__label" for="subject_name">Subject Name</label>
+        </div>
+      
+        <div class="signup__field">
+          <input class="signup__input" type="text" name="branch" id="branch" required />
+          <label class="signup__label" for="branch">Branch</label>
+        </div>
+        <div class="signup__field">
+          <input class="signup__input" type="text" name="semester" id="semester" required />
+          <label class="signup__label" for="semester">Semester</label>
+        </div>
+      
+        <button>Add <span class="glyphicon glyphicon-send"></span></button>
+      </form>
+    </div>
+    
+  </div>
+</div>
+          
+              <div id="main-contents">
+                <div class="row">
+                  <div class="column">
+                    <div class="card">
+                      <h3>Assignment-1</h3>
+                      <br/>
+                      <h6>CSE-1</h6>
+                      <br/>
+                      <h6>7th sem</h6>
+                      
+                    
+                    </div>
+                  </div>
+                
+                  <div class="column">
+                    <div class="card">
+                      <h3>Assignment-2</h3>
+                      <br/>
+                      <h6>CSE-1</h6>
+                      <br/>
+                      <h6>7th sem</h6>
+                    </div>
+                  </div>
+                  
+                  <div class="column">
+                    <div class="card">
+                       <h3>Assignment-3</h3>
+                      <br/>
+                      <h6>CSE-1</h6>
+                      <br/>
+                      <h6>7th sem</h6>
+                    </div>
+                  </div>
+                  
+                
+                </div>
+                
+
+
+
+                 <!-- Site footer -->
+              
+                 
+
+             </div>
+             <footer class="site-footer">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="col-md-9 col-xs-9 col-xs-offset-3 col-md-offset-3">
+                        <img class="logo" src="http://www.msit.in/static/img/msit.png" alt="logo">
+                        </div>
+                    <p class="text-justify">Welcome to <i>Assignment Submission Portal</i> of Maharaja Surajmal Institute of  Technology, GGSIPU</p>
+                  </div>
+          
+                  <div class="col-xs-6 col-md-3 col-md-offset-1">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                      <li><a href="#">Home</a></li>
+                      <li><a href="#">About Us</a></li>
+                      <li><a href="#">Vision</a></li>
+                      <li><a href="#">FAQs</a></li>
+                      <li><a href="#">Contact Us</a></li>
+              
+                    </ul>
+                  </div>
+                  <div class="col-xs-6 col-md-4 footer-links">
+                      <h3>Address</h3>
+                      
+                        C-4 Janak Puri, New Delhi, Delhi 110058, India<br />
+                         <i class="glyphicon glyphicon-earphone"></i> Phone: 011-25528117, 011-25552667<br />
+                        <i class="glyphicon glyphicon-envelope"></i> Email: <a href="mailto:sdirector@msit.in">sdirector@msit.in</a><br />
+                       
+          
+                    </div>
+                </div>
+          
+              </div>
+         </footer>
+                </div>
+                  <script>
+                    $('.nav-toggle').click(function(e) {
+
+e.preventDefault();
+$("html").toggleClass("openNav");
+$(".nav-toggle").toggleClass("active");
+
+});
+                  </script>
+           
