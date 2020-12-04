@@ -1,0 +1,79 @@
+<div class="new-wrapper">
+    <div id="main-contents">
+        <div class="registeration-form">
+            <form class="signup" (ngSubmit)="onSubmit()" #f="ngForm" autocomplete="off">
+                <h1>Teacher Form</h1>
+                <br/>
+                <p style="color: rgb(247, 71, 71);" id="msg"></p>
+        
+                <!-- <div class="signup__field">
+                    <input class="signup__input" type="text" name="Teacher Id" id="Teacher_id" required />
+                    <label class="signup__label" for="teacher_id">Teacher Id</label>
+                </div> -->
+                <div class="signup_field_outer">
+                <div class="signup__field">
+                    <input class="signup__input" type="text" name="name" id="name" required autofocus
+                    ngModel #name="ngModel" />
+                    <label class="signup__label" for="name">Teacher Name</label>
+               </div>
+               <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name.invalid && name.touched">
+                <div class="error" *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+            </div>
+                </div>
+            <div class="signup_field_outer">
+                <div class="signup__field">
+                    <input class="signup__input" type="text" name="department" id="department" required 
+                    ngModel department #department="ngModel" />
+                    <label class="signup__label" for="department">Department</label>
+              </div>
+              <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="department.invalid && department.touched">
+                <div class="error" *ngIf="department.errors.required">
+                    Department is required.
+                </div>
+            </div>
+            </div>
+                <div class="signup_field_outer">
+                <div class="signup__field">
+                    <input class="signup__input" type="email" name="email" id="email" required 
+                    ngModel email #email="ngModel" />
+                    <label class="signup__label" for="email">Email</label>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email.invalid && email.touched">
+                        <div class="error" *ngIf="email.errors.required">
+                            Email is required.
+                        </div>
+                        <div class="error" *ngIf="email.errors.email">
+                            Please enter valid email
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="signup__field">
+                    <input class="signup__input" type="text" name="contact_no" id="contact_no" ngModel />
+                    <label class="signup__label" for="contact_no">Contact Number</label>
+                </div> -->
+                <div class="signup_field_outer">
+                <div class="signup__field">
+                    <input class="signup__input" type="password" name="password" id="password" required 
+                    ngModel password #password="ngModel" />
+                    <label class="signup__label" for="password">Password</label>
+               </div>
+               <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="password.invalid && password.touched">
+                <div class="error" *ngIf="password.errors.required">
+                    Password is required.
+                </div>
+            </div> 
+                </div>
+          
+                <!-- <div class="signup__field">
+                    <input class="signup__input" type="password" name="con_password" id="con_password" required />
+                    <label class="signup__label" for="con_password">Confirm Password</label>
+                </div> -->
+                <!-- <button>Sign up</button> -->
+                <button type="submit" class="btn" id="submit" [disabled]="!f.valid && !filled">Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>

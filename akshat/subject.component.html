@@ -1,0 +1,98 @@
+<div class="new-wrapper">
+    <a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" data-toggle="modal" data-target="#NewSubject"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Subject</a>
+    <div class="modal fade" id="NewSubject" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+          
+                <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
+                    <h3>Subject Form</h3>
+                    <br/>
+                    <p id="msg"></p>
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="code" id="subject_code" required 
+                        ngModel code #code="ngModel" />
+                        <label class="signup__label" for="subject_code">Subject Code</label>
+                  </div>
+                  <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="code.invalid && code.touched">
+                    <div class="error" *ngIf="code.errors.required">
+                        Subject code is required.
+                    </div>
+                </div>
+                    </div>
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="subid" id="subject_id" required 
+                        ngModel subid #subid="ngModel" />
+                        <label class="signup__label" for="subject_id">Subject Id</label>
+                   </div>
+                   <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="subid.invalid && subid.touched">
+                    <div class="error" *ngIf="subid.errors.required">
+                        Subject id is required.
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="name" id="name" required 
+                        ngModel name1 #name1="ngModel" />
+                        <label class="signup__label" for="name">Subject Name</label>
+                   </div>
+                   <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid && name1.touched">
+                    <div class="error" *ngIf="name1.errors.required">
+                        Subject name is required.
+                    </div>
+                </div>
+
+                    </div>
+
+                    <div>
+                        <input  type="radio" name="type" id="theory" value="theory" required
+                        ngModel />
+                        <label class="signup__radio" for="theory">Theory</label>
+                        &nbsp;
+                        <input type="radio" name="type" id="practical" value="practical" required 
+                        ngModel/> 
+                        <label class="signup__radio" for="practical">Practical</label>
+                    </div>
+                    
+                    
+                    <button type="submit" class="addsub" id="submit" [disabled]="!f.valid && !fill" >Add <span class="glyphicon glyphicon-send"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div style="overflow-x:auto;">    
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject ID</th>
+                    <th>Subject Name</th>
+                    <th>Type</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of subjects">
+                    <td>{{subject.code}}</td>
+                    <td>{{subject.subid}}</td>
+                    <td>{{subject.name}}</td>
+                    <td>{{subject.type}}</td>
+                    <td>
+                        <button type="button" class="btn" (click)="onClick()" >Edit</button>
+                    </td>
+                    <td> 
+                        <button type="button" class="btn danger" (click)="deleteItem(subject._id,subject.name)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
