@@ -1,0 +1,123 @@
+<div class="body">
+<a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8 col-offset-7" data-toggle="modal" data-target="#NewAssignment"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Assignment</a>
+      <!-- Modal -->   
+<div class="modal fade" id="NewAssignment" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
+        <h3>ADD ASSIGNMENT</h3>
+       <br/>
+       <p id="msg"></p>
+       <div class="signup__field_outer ">
+        <div class="signup__field">
+            <input class="signup__input" type="text" name="name" id="name" required 
+            ngModel name1 #name1="ngModel" />
+            <label class="signup__label" for="name">Name</label>
+          </div>
+          <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid && name1.touched">
+            <div class="error" *ngIf="name1.errors.required">
+                Assignment name is required.
+            </div>
+        </div>
+       </div>
+       <div class="signup__field_outer ">
+        <div class="signup__field">
+            <input class="signup__input" type="text" name="description" id="description" required
+            ngModel description #description="ngModel" />
+            <label  class="signup__label" for="name">Description</label>
+        </div>
+       </div>
+        <div class="signup__field_outer ">
+        <div class="signup__field">
+            <input class="signup__input" type="date" name="last" id="last" required 
+            ngModel last #last="ngModel" />
+            <label class="signup__label" for="last">Last date</label>
+       </div>
+       <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="last.touched">
+        <div class="error" *ngIf="last.errors.required">
+            Last data of submission is required.
+        </div>
+    </div>
+        </div>
+        <div class="signup__field_outer ">
+        <div class="signup__field">
+
+            <!-- <label class="signup__label" for="last">Last data</label> -->
+        </div>
+        <input class="signup__input" type="file" name="document" id="document"
+        (change)="onFileSelected($event)" />
+        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="!docFormat">
+            <div class="error">
+                Please choose of pdf type file only
+            </div>
+        </div>
+      </div>
+        <button type="submit" class="submit" id="submit" [disabled]="filled || !f.valid || !fileSelected" >Add <span class="glyphicon glyphicon-send"></span></button>
+      </form>
+    </div>
+  </div>
+</div>
+          
+<div id="main-contents">
+    <div class="row">
+        <!-- <div class="column" *ngFor="let subject of showMySubject" [routerLink] = "['/teacher','assignment',subject.subid]">
+            <div class="card">
+                <h3>{{subject.name}}</h3>
+                <br/>
+                <h6>{{subject.stream}}-{{subject.section}}</h6>
+                <br/>
+                <h6>{{subject.sem}} semester</h6>
+            </div>
+        </div> -->
+
+        <div class="column" *ngFor="let assignment of allAssignment">
+            <div class="card">
+                <div class="card-body col-md-10" style="height:30px" ></div>
+                <div class="dropdown" style="float:right">
+                          <div data-toggle="dropdown">
+                              <i class="fas fa-ellipsis-h iconstyle"></i>
+                          </div>
+                          <ul class="dropdown-menu">
+                              <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                              <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                          </ul>    
+                      </div>
+                 
+                      <div class="card-body">
+                <div class="assignment-name">
+                <h5>{{assignment.name}}</h5>
+                </div>
+                <br/>
+                <h6>{{room}}</h6>
+                <h6>{{sem}} sem</h6>
+            </div>
+            </div>
+        </div>
+    
+        <!-- <div class="column">
+            <div class="card">
+                <h3>Assignment-2</h3>
+                <br/>
+                <h6>CSE-1</h6>
+                <br/>
+                <h6>7th sem</h6>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="card">
+                <h3>Assignment-3</h3>
+                <br/>
+                <h6>CSE-1</h6>
+                <br/>
+                <h6>7th sem</h6>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>
