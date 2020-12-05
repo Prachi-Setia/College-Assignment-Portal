@@ -59,21 +59,28 @@
           
 <div id="main-contents">
     <div class="row">
-        <div class="column" *ngFor="let subject of showMySubject">
+        <div style="cursor: pointer;" class="column" *ngFor="let subject of showMySubject">
             <div class="card">
-                <div class="dropdown" style="float:right">
-                    <div data-toggle="dropdown"><i class="fas fa-ellipsis-h iconstyle"></i>
-                   </div>
+            
+           <div class="card-body col-md-10" style="height:30px" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}"></div>
+          <div class="dropdown" style="float:right">
+                    <div data-toggle="dropdown">
+                        <i class="fas fa-ellipsis-h iconstyle"></i>
+                    </div>
                     <ul class="dropdown-menu">
-                      <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                      <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
-                      
-                    </ul>
-                  </div>
-           <div class="subject_name">     <h5>{{subject.name}}</h5></div>
+                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                        <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                    </ul>    
+                </div>
+           
+                <div class="card-body" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}">
+                <div class="subject_name">
+                    <h5>{{subject.name}}</h5>
+                </div>
                 <br/>
                 <h6>{{subject.stream}}-{{subject.section}}</h6>
                 <h6>{{subject.sem}} semester</h6>
+                </div>
             </div>
         </div>
     </div>

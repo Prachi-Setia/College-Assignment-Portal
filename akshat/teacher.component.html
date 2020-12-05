@@ -1,0 +1,22 @@
+<nav class=" navbar-inverse" *ngIf="auth">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav"></ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="fas fa-book-open"></span> Subjects</a></li>
+            <li><a href="#"><span class="fas fa-user"></span> Profile</a></li>
+            <li><a (click)="onLogout()"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<div *ngIf="auth">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="start" *ngIf="!auth" style="margin-top: 100px;">
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
