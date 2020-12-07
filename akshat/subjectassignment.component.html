@@ -1,0 +1,150 @@
+<div class="body">
+    <div id="main-contents">
+        <div class="body-heading"><br/>{{subject}} Assignments</div>
+        <hr style="color:#d9d9d9; background-color:#d9d9d9">
+        <div class="collapse-heading collapsed " data-toggle="collapse" data-target="#Todo">
+            <div class="collapse-arrow">
+                <span class="fas fa-play"></span>
+            </div>
+            &nbsp;Pending Assignments
+        </div>
+        <div  id="Todo" class="collapse ">
+            <div class="row">
+                <div class="column" *ngFor="let assignment of assignments">
+                    <div class="card">
+                        <div class="card-body col-md-10" style="height:30px"></div>
+                        <div class="dropdown" style="float:right">
+                            <div data-toggle="dropdown">
+                                <i class="fas fa-ellipsis-h iconstyle"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="#submitModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-upload"></i> Submit</a></li>
+                                <li><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
+                            </ul>    
+                        </div>
+                        <div class="card-body">
+                            <div class="subject_name">
+                                <h5>{{assignment.name}}</h5>
+                                <br/>
+                            </div>
+                            <h6>{{stream}}-{{section}}</h6>
+                            <h6>{{sem}}th sem</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="collapse-heading collapsed" data-toggle="collapse" data-target="#Completed">
+            <div class="collapse-arrow">
+                <span class="fas fa-play"></span>
+            </div>&nbsp;Completed Assignments
+        </div>
+        <div id="Completed" class="collapse">
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <div class="card-body col-md-10" style="height:30px"></div>
+                        <div class="dropdown" style="float:right">
+                            <div data-toggle="dropdown">
+                                <i class="fas fa-ellipsis-h iconstyle"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                            </ul>    
+                        </div>
+                        <div class="card-body">
+                            <div class="subject_name">  <h5>ACN</h5>
+                            <br/>
+                            </div>
+                            <h6>CSE-1</h6>
+                            <h6>7th sem</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <div class="card-body col-md-10" style="height:30px"></div>
+                        <div class="dropdown" style="float:right">
+                            <div data-toggle="dropdown">
+                                <i class="fas fa-ellipsis-h iconstyle"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                            </ul>    
+                        </div>
+                        <div class="card-body">
+                            <div class="subject_name">  <h5>ACN</h5>
+                            <br/>
+                            </div>
+                            <h6>CSE-1</h6>
+                            <h6>7th sem</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <div class="card-body col-md-10" style="height:30px"></div>
+                        <div class="dropdown" style="float:right">
+                            <div data-toggle="dropdown">
+                                <i class="fas fa-ellipsis-h iconstyle"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                            </ul>    
+                        </div>
+                        <div class="card-body">
+                            <div class="subject_name">  <h5>ACN</h5>
+                            <br/>
+                            </div>
+                            <h6>CSE-1</h6>
+                            <h6>7th sem</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="submitModal">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">&times;</button>
+       <h4 style="text-align: center;" class="modal-title">Upload Assignment</h4>
+         
+        </div>
+        <div class="modal-body">
+            
+     <div class="modal-text">Drag and Drop File Here to Uplaod PDF</div>
+        
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal" id="infoModal">
+        <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+           <h4 style="text-align: center;" class="modal-title">Assignment Details</h4>
+             
+            </div>
+            <div class="modal-body">
+               <div style="overflow-x:auto;">    
+          <table style="margin-left: 20px;">
+              <tr><td >Last Date:</td><td class="modal-text">abc</td></tr>
+              <tr><td>Description:</td><td class="modal-text">abcdefghabcddefdefggg</td></tr>
+              <tr><td>Teacher:</td><td class="modal-text">abc</td></tr>
+              </table>
+         </div>
+            
+            </div>
+          </div>
+        </div>
+        </div>
