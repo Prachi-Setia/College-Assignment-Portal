@@ -1,0 +1,35 @@
+<div class="body-heading"><br/><b>Submissions</b></div>
+<div *ngIf="present">
+    <div class="body-heading"> Due date- (dd/mm/yyyy)</div>
+    <hr style="color:#d9d9d9; background-color:#d9d9d9">
+    <table>
+        <thead>
+            <tr>
+              
+                <th>Name</th>
+                <th>Status</th>
+                <th>Set Status</th>
+                <th>Created At</th>
+            
+            </tr> 
+            <tr *ngFor="let submission of submittedStudent; let i = index">
+          
+                <td class="tooltip1">{{submission.name}}  <span class="tooltiptext">{{submission.name}}</span></td>
+                <td>{{submission.status}}</td>
+                <td><button (click)="changeStatus(submission._id,'accepted',submission.name,i)" class="btn btn-link fa fa-check-circle fa-lg accept"></button>
+                    <button (click)="changeStatus(submission._id,'rejected',submission.name,i)" class="btn btn-link fa fa-window-close fa-lg reject"></button></td>
+                <td class="tooltip1">{{submission.createAt}}<span class="tooltiptext">{{submission.name}}</span></td>
+               
+            </tr>
+        </thead>
+    </table>
+    
+</div>
+<div class="start" *ngIf="!present" style="margin-top: 100px;">
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
