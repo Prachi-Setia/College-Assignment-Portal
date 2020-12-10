@@ -95,26 +95,18 @@ h5{
 td{
   padding :10px;
 }
-.dropzone-outer{
-  width: 100%;
-  height: 250px;
-  border: 2px dashed #ccc;
-}
 .dropzone{
-  margin-top:100px;
-
-  color: #666666;
-  line-height: 250px;
+  width: 100%;
+  height: 300px;
+  border: 2px dashed #ccc;
+  color: #ccc;
+  line-height: 300px;
   text-align: center;
 }
 .dropzone .file{
   position: absolute;
   top: 0px;
   color: #000;
-  height:20px;
-  width:450px;
-  align-content: center;
-
 }
 
 .dropzone.dragover{
@@ -124,12 +116,15 @@ td{
 button:disabled{
   cursor: no-drop;
 }
+.dropdown:hover{
+  background-color: #d9d9d9;
+  width:20px;
+  border-radius:4px;
 
-input[type="file"] {
-  display: none;
 }
 
-.cloudstyle{
-  color: #7e9ecd;
-  font-size: 60px;
+.iconstyle{
+  color:#555555;
+font-size: 12px;
+
 }

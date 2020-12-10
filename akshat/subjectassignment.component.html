@@ -51,12 +51,9 @@
                                 <i class="fas fa-ellipsis-h iconstyle"></i>
                             </div>
                             <ul class="dropdown-menu">
-                                <li><a href="#updateModal"  data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i> Update</a></li>
-                                <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
-                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                <li><a>Status: {{assignment.status}}</a></li>
-                                <li><a>CreatedAt: {{assignment.createdAt}}</a></li>
-                                
+                                <li (click)="submitAssignmentCalls(assignment._id)"><a href="#UpdateModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-edit"></i> Update</a></li>
+                                <li><a href="#"><i class="fa fa-eye"></i> View</a></li>
+                            
                             </ul>    
                         </div>
                         <div class="card-body">
@@ -82,16 +79,13 @@
             </div>
             <div class="modal-body"> 
                 <div *ngIf="!submitSuccessfully">
-                
-                    <div class="dropzone-outer">
+                    <input class="signup__input" type="file" name="document" id="document"
+                    (change)="onFileSelected($event)" />
+                    <br />
                     <div class="dropzone" id="dropzone" (drop)="drop($event)" 
                     (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
-                    <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
                     <div class="file" *ngIf="AssignmentFile">{{AssignmentFile.name}}</div>
-                        Drop file here or <label for="file-upload" class="btn btn-link">Select File
-                        </label>
-                        <input id="file-upload" type="file"  (change)="onFileSelected($event)"/>
-                    </div>
+                        Drop files here to upload
                     </div>
                     <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;">
                         <div class="error" *ngIf="!docFormat">
@@ -138,8 +132,7 @@
         </div>
     </div>
 </div>
-
-<div class="modal" id="updateModal">
+<div class="modal" id="UpdateModal">
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
@@ -148,16 +141,13 @@
             </div>
             <div class="modal-body"> 
                 <div *ngIf="!submitSuccessfully">
-                
-                    <div class="dropzone-outer">
+                    <input class="signup__input" type="file" name="document" id="document"
+                    (change)="onFileSelected($event)" />
+                    <br />
                     <div class="dropzone" id="dropzone" (drop)="drop($event)" 
                     (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
-                    <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
                     <div class="file" *ngIf="AssignmentFile">{{AssignmentFile.name}}</div>
-                        Drop file here or <label for="file-upload" class="btn btn-link">Select File
-                        </label>
-                        <input id="file-upload" type="file"  (change)="onFileSelected($event)"/>
-                    </div>
+                        Drop files here to upload
                     </div>
                     <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;">
                         <div class="error" *ngIf="!docFormat">
