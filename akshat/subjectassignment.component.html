@@ -10,7 +10,7 @@
         </div>
         <div  id="Todo" class="collapse ">
             <div class="row">
-                <div class="column" *ngFor="let assignment of assignments">
+                <div class="column" *ngFor="let assignment of assignmentsPending">
                     <div class="card">
                         <div class="card-body col-md-10" style="height:30px"></div>
                         <div class="dropdown" style="float:right">
@@ -18,8 +18,8 @@
                                 <i class="fas fa-ellipsis-h iconstyle"></i>
                             </div>
                             <ul class="dropdown-menu">
-                                <li><a href="#submitModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-upload"></i> Submit</a></li>
-                                <li><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
+                                <li (click)="submitAssignmentCalls(assignment._id)" ><a href="#submitModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-upload"></i> Submit</a></li>
+                                <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
                             </ul>    
                         </div>
                         <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
         <div id="Completed" class="collapse">
             <div class="row">
-                <div class="column">
+                <div class="column" *ngFor="let assignment of assignmentsComplete">
                     <div class="card">
                         <div class="card-body col-md-10" style="height:30px"></div>
                         <div class="dropdown" style="float:right">
@@ -51,58 +51,20 @@
                                 <i class="fas fa-ellipsis-h iconstyle"></i>
                             </div>
                             <ul class="dropdown-menu">
+                                <li><a href="#updateModal"  data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i> Update</a></li>
+                                <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
                                 <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
+                                <li><a>Status: {{assignment.status}}</a></li>
+                                <li><a>CreatedAt: {{assignment.createdAt}}</a></li>
+                                
                             </ul>    
                         </div>
                         <div class="card-body">
-                            <div class="subject_name">  <h5>ACN</h5>
+                            <div class="subject_name">  <h5>{{assignment.name}}</h5>
                             <br/>
                             </div>
-                            <h6>CSE-1</h6>
-                            <h6>7th sem</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-body col-md-10" style="height:30px"></div>
-                        <div class="dropdown" style="float:right">
-                            <div data-toggle="dropdown">
-                                <i class="fas fa-ellipsis-h iconstyle"></i>
-                            </div>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
-                            </ul>    
-                        </div>
-                        <div class="card-body">
-                            <div class="subject_name">  <h5>ACN</h5>
-                            <br/>
-                            </div>
-                            <h6>CSE-1</h6>
-                            <h6>7th sem</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-body col-md-10" style="height:30px"></div>
-                        <div class="dropdown" style="float:right">
-                            <div data-toggle="dropdown">
-                                <i class="fas fa-ellipsis-h iconstyle"></i>
-                            </div>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
-                            </ul>    
-                        </div>
-                        <div class="card-body">
-                            <div class="subject_name">  <h5>ACN</h5>
-                            <br/>
-                            </div>
-                            <h6>CSE-1</h6>
-                            <h6>7th sem</h6>
+                            <h6>{{stream}}-{{section}}</h6>
+                            <h6>{{sem}}th sem</h6>
                         </div>
                     </div>
                 </div>
@@ -110,41 +72,110 @@
         </div>
     </div>
 </div>
-
+    
 <div class="modal" id="submitModal">
     <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header">
-            <button class="close" data-dismiss="modal">&times;</button>
-       <h4 style="text-align: center;" class="modal-title">Upload Assignment</h4>
-         
-        </div>
-        <div class="modal-body">
-            
-     <div class="modal-text">Drag and Drop File Here to Uplaod PDF</div>
-        
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="modal" id="infoModal">
-        <div class="modal-dialog ">
-          <div class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">&times;</button>
-           <h4 style="text-align: center;" class="modal-title">Assignment Details</h4>
-             
+                <h4 style="text-align: center;" class="modal-title">Upload Assignment</h4> 
+            </div>
+            <div class="modal-body"> 
+                <div *ngIf="!submitSuccessfully">
+                
+                    <div class="dropzone-outer">
+                    <div class="dropzone" id="dropzone" (drop)="drop($event)" 
+                    (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
+                    <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
+                    <div class="file" *ngIf="AssignmentFile">{{AssignmentFile.name}}</div>
+                        Drop file here or <label for="file-upload" class="btn btn-link">Select File
+                        </label>
+                        <input id="file-upload" type="file"  (change)="onFileSelected($event)"/>
+                    </div>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;">
+                        <div class="error" *ngIf="!docFormat">
+                            Please choose of pdf type file only
+                        </div>
+                        <div class="error" *ngIf="manyFiles">
+                            Please drop only one file
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <button class="btn btn-primary" id="submit" type="submit" (click)="submitAssignment()"
+                        [disabled]="(AssignmentFile === null) || filled">Upload</button>
+                </div>
+                <div *ngIf="submitSuccessfully">
+                    Your assignment is submitted successfully.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="infoModal">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 style="text-align: center;" class="modal-title">Assignment Details</h4> 
             </div>
             <div class="modal-body">
-               <div style="overflow-x:auto;">    
-          <table style="margin-left: 20px;">
-              <tr><td >Last Date:</td><td class="modal-text">abc</td></tr>
-              <tr><td>Description:</td><td class="modal-text">abcdefghabcddefdefggg</td></tr>
-              <tr><td>Teacher:</td><td class="modal-text">abc</td></tr>
-              </table>
-         </div>
-            
+                <div style="overflow-x:auto;">
+                    <div *ngIf="getDescriptionLoading">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.75 22c0 .966-.783 1.75-1.75 1.75s-1.75-.784-1.75-1.75.783-1.75 1.75-1.75 1.75.784 1.75 1.75zm-1.75-22c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 10.75c.689 0 1.249.561 1.249 1.25 0 .69-.56 1.25-1.249 1.25-.69 0-1.249-.559-1.249-1.25 0-.689.559-1.25 1.249-1.25zm-22 1.25c0 1.105.896 2 2 2s2-.895 2-2c0-1.104-.896-2-2-2s-2 .896-2 2zm19-8c.551 0 1 .449 1 1 0 .553-.449 1.002-1 1-.551 0-1-.447-1-.998 0-.553.449-1.002 1-1.002zm0 13.5c.828 0 1.5.672 1.5 1.5s-.672 1.501-1.502 1.5c-.826 0-1.498-.671-1.498-1.499 0-.829.672-1.501 1.5-1.501zm-14-14.5c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2zm0 14c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2z"/></svg>
+                    </div>
+                    <div *ngIf="!getDescriptionLoading">
+                        <table style="margin-left: 20px;">
+                            <tr><td >Last Date:</td><td class="modal-text">{{assignmentDescription.last}}</td></tr>
+                            <tr><td>Description:</td><td class="modal-text">{{assignmentDescription.description}}</td></tr>
+                            <tr><td>Teacher:</td><td class="modal-text">{{assignmentDescription.teachername}}({{assignmentDescription.teacherdept}})</td></tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+    </div>
+</div>
+
+<div class="modal" id="updateModal">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 style="text-align: center;" class="modal-title">Update Assignment</h4> 
+            </div>
+            <div class="modal-body"> 
+                <div *ngIf="!submitSuccessfully">
+                
+                    <div class="dropzone-outer">
+                    <div class="dropzone" id="dropzone" (drop)="drop($event)" 
+                    (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
+                    <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
+                    <div class="file" *ngIf="AssignmentFile">{{AssignmentFile.name}}</div>
+                        Drop file here or <label for="file-upload" class="btn btn-link">Select File
+                        </label>
+                        <input id="file-upload" type="file"  (change)="onFileSelected($event)"/>
+                    </div>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;">
+                        <div class="error" *ngIf="!docFormat">
+                            Please choose of pdf type file only
+                        </div>
+                        <div class="error" *ngIf="manyFiles">
+                            Please drop only one file
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <button class="btn btn-primary" id="submit" type="submit" (click)="submitAssignment()"
+                        [disabled]="(AssignmentFile === null) || filled">Upload</button>
+                </div>
+                <div *ngIf="submitSuccessfully">
+                    Your assignment is submitted successfully.
+                </div>
+            </div>
         </div>
+    </div>
+</div>

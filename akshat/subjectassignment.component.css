@@ -85,15 +85,51 @@ h5{
     cursor: pointer;
 }
 .modal-content{
-  width:50%;
+  max-width:80%;
   height:50%;
   margin-top:200px;
 }
 .modal-text{
   color:#8c8c8c;
+}
+td{
+  padding :10px;
+}
+.dropzone-outer{
+  width: 100%;
+  height: 250px;
+  border: 2px dashed #ccc;
+}
+.dropzone{
+  margin-top:100px;
+
+  color: #666666;
+  line-height: 250px;
+  text-align: center;
+}
+.dropzone .file{
+  position: absolute;
+  top: 0px;
+  color: #000;
+  height:20px;
+  width:450px;
+  align-content: center;
 
 }
 
-  td{
-    padding :10px;
-  }
+.dropzone.dragover{
+  border-color: #000;
+  color: #000;
+}
+button:disabled{
+  cursor: no-drop;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.cloudstyle{
+  color: #7e9ecd;
+  font-size: 60px;
+}
