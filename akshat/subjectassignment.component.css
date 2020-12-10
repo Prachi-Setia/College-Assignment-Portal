@@ -95,18 +95,24 @@ h5{
 td{
   padding :10px;
 }
+
 .dropzone{
-  width: 100%;
-  height: 300px;
+ 
+
   border: 2px dashed #ccc;
-  color: #ccc;
-  line-height: 300px;
+  color: #666666;
+height:250px;
   text-align: center;
+
 }
 .dropzone .file{
   position: absolute;
-  top: 0px;
+  margin-top: 70px;
   color: #000;
+  height:20px;
+  width:450px;
+  align-content: center;
+
 }
 
 .dropzone.dragover{
@@ -116,15 +122,13 @@ td{
 button:disabled{
   cursor: no-drop;
 }
-.dropdown:hover{
-  background-color: #d9d9d9;
-  width:20px;
-  border-radius:4px;
 
+input[type="file"] {
+  display: none;
 }
 
-.iconstyle{
-  color:#555555;
-font-size: 12px;
-
+.cloudstyle{
+  color: #7e9ecd;
+  font-size: 60px;
+  
 }
