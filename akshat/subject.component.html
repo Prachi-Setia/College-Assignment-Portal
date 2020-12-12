@@ -1,3 +1,4 @@
+<div class="body">
 <div class="new-wrapper">
     <a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" data-toggle="modal" data-target="#NewSubject"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Subject</a>
     <div class="modal fade" id="NewSubject" role="dialog">
@@ -75,21 +76,24 @@
                     <th>Subject ID</th>
                     <th>Subject Name</th>
                     <th>Type</th>
-                    <th></th>
-                    <th></th>
+                    <th>Edit </th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let subject of subjects">
+                <tr *ngFor="let subject of subjects; let i = index">
                     <td>{{subject.code}}</td>
                     <td>{{subject.subid}}</td>
                     <td>{{subject.name}}</td>
                     <td>{{subject.type}}</td>
                     <td>
-                        <button type="button" class="btn" href="#editModal"  data-toggle="modal" data-target="#editModal" >Edit</button>
+                        <button type="button" class="btn btn-link" href="#editModal"  data-toggle="modal" data-target="#editModal" 
+                         (click)="updateSubjectCall(subject,i)" >
+                         <i class="fa fa-pencil fa-lg"></i>
+                        </button>
                     </td>
                     <td> 
-                        <button type="button" class="btn danger" (click)="deleteItem(subject._id,subject.name)">Delete</button>
+                        <button type="button" class="btn btn-link" (click)="deleteItem(subject._id,subject.name)"> <i class="fas fa-trash fa-lg"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -99,67 +103,75 @@
 
 <div class="modal" id="editModal">
     <div class="modal-dialog ">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    
-        <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
-            <h3>Edit Subject</h3>
-            <br/>
-            <p id="msg"></p>
-            <div class="signup__field_outer">
-            <div class="signup__field">
-                <input class="signup__input" type="text" name="code" id="subject_code" required 
-                ngModel code #code="ngModel" />
-                <label class="signup__label" for="subject_code">Subject Code</label>
-            </div>
-            <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="code.invalid && code.touched">
-            <div class="error" *ngIf="code.errors.required">
-                Subject code is required.
-            </div>
-        </div>
-            </div>
-            <div class="signup__field_outer">
-            <div class="signup__field">
-                <input class="signup__input" type="text" name="subid" id="subject_id" required 
-                ngModel subid #subid="ngModel" />
-                <label class="signup__label" for="subject_id">Subject Id</label>
-            </div>
-            <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="subid.invalid && subid.touched">
-            <div class="error" *ngIf="subid.errors.required">
-                Subject id is required.
-            </div>
-        </div>
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div *ngIf="!updateSuccessfully">
+                <form class="signup" (ngSubmit)="onUpdate()" #up="ngForm" autocomplete="off">
+                    <h3>Edit Subject</h3>
+                    <br/>
+                    <p id="msg"></p>
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="code" id="code" required 
+                        [(ngModel)]="updateSubject.code" (keydown)="onkeypress()" code2 #code2="ngModel" />
+                        <label class="signup__label" for="code">Subject Code</label>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="code2.invalid">
+                    <div class="error" *ngIf="code2.errors.required">
+                        Subject code is required.
+                    </div>
+                </div>
+                    </div>
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="subid" id="subid" required 
+                        [(ngModel)]="updateSubject.subid" (keydown)="onkeypress()" subid2 #subid2="ngModel" />
+                        <label class="signup__label" for="subid">Subject Id</label>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="subid2.invalid">
+                    <div class="error" *ngIf="subid2.errors.required">
+                        Subject id is required.
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="signup__field_outer">
+                    <div class="signup__field">
+                        <input class="signup__input" type="text" name="name" id="subject_name" required 
+                        [(ngModel)]="updateSubject.name" (keydown)="onkeypress()" name2 #name2="ngModel" />
+                        <label class="signup__label" for="subject_name">Subject Name</label>
+                    </div>
+                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name2.invalid">
+                    <div class="error" *ngIf="name2.errors.required">
+                        Subject name is required.
+                    </div>
+                </div>
+
+                    </div>
+
+                    <div>
+                        <input  type="radio" name="type" value="theory" required
+                        [(ngModel)]="updateSubject.type" (click)="onkeypress()" />
+                        <label class="signup__radio" for="theory">Theory</label>
+                        &nbsp;
+                        <input type="radio" name="type" value="practical" required 
+                        [(ngModel)] = "updateSubject.type" (click)="onkeypress()"/> 
+                        <label class="signup__radio" for="practical">Practical</label>
+                    </div>
+                    
+                    
+                    <button type="submit" class="addsub" id="update" [disabled]="updatefilled || !up.valid || !changeUpdate" >
+                        Update <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </form>
             </div>
 
-            <div class="signup__field_outer">
-            <div class="signup__field">
-                <input class="signup__input" type="text" name="name" id="name" required 
-                ngModel name1 #name1="ngModel" />
-                <label class="signup__label" for="name">Subject Name</label>
-            </div>
-            <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid && name1.touched">
-            <div class="error" *ngIf="name1.errors.required">
-                Subject name is required.
+            <div *ngIf="updateSuccessfully" style="margin-top: 40px; margin-left: 50px;">
+                Subject is updated successfully.
             </div>
         </div>
-
-            </div>
-
-            <div>
-                <input  type="radio" name="type" id="theory" value="theory" required
-                ngModel />
-                <label class="signup__radio" for="theory">Theory</label>
-                &nbsp;
-                <input type="radio" name="type" id="practical" value="practical" required 
-                ngModel/> 
-                <label class="signup__radio" for="practical">Practical</label>
-            </div>
-            
-            
-            <button type="submit" class="addsub" id="submit" >Update <span class="glyphicon glyphicon-send"></span></button>
-        </form>
-      </div>
     </div>
-    </div>
+</div>
+</div>

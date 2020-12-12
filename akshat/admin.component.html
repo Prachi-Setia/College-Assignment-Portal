@@ -1,0 +1,72 @@
+<div   [class.openNav]="classApplied" class="primary-nav" *ngIf="auth" >
+        <button  (click)="onToggle()" href="#" class="hamburger open-panel ">
+            <span class="screen-reader-text">Menu</span>
+        </button>
+        
+     <nav role="navigation" class="menu"  (mouseleave)="onLeave()">
+            <a href="#" class="logotype">Admin</a>
+            <div class="overflow-container">
+                <ul class="menu-dropdown">
+                    <li class="menu-hasdropdown">
+                        
+        
+                        <label title="toggle menu" for="teacher">
+                            <span (click)="onSubToggle()"  class="tog">Teacher</span><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                          <span (click)="onSubToggle()" class="downarrow"><i class="fa fa-caret-down"></i></span>
+                        </label> 
+
+        
+                        <ul  class="sub-menu-dropdown" [style.display]="isVisible ? 'block' : 'none'">
+                            <li><a  [routerLink] = "['/admin/addteacher']">Add Teacher</a></li>
+                            <li><a [routerLink] = "['/admin/teachers']">Delete/Edit Teacher</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-hasdropdown">
+                        <!-- <a href="#">Student</a><span class="icon"><i class="fas fa-user-graduate"></i></span> -->
+        
+                        <label title="toggle menu" for="student">
+                            <span (click)="onSubToggle1()"  class="tog">Student</span><span class="icon"><i class="fas fa-user-graduate"></i></span>
+                            <span (click)="onSubToggle1()" class="downarrow"><i class="fa fa-caret-down"></i></span>
+                        </label>
+                      
+        
+                        <ul class="sub-menu-dropdown" [style.display]="isVisible1 ? 'block' : 'none'">
+                            <li><a [routerLink] = "['/admin/addstudent']">Add Student</a></li>
+                            <li><a [routerLink] = "['/admin/students']">Delete/Edit Student</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-hasdropdown">
+                        
+        
+                        <label title="toggle menu" for="courses">
+                            <span [routerLink] = "['/admin/subject']" class="tog">Subject</span><span class="icon"><i class="fas fa-book-open"></i></span>
+                            <!-- <span class="downarrow"><i class="fa fa-caret-down"></i></span> -->
+                        </label>
+                        <input type="checkbox" class="sub-menu-checkbox" id="courses" />
+        
+                        <!-- <ul class="sub-menu-dropdown">
+                            <li><a href="">Add Course</a></li>
+                            <li><a href="">Delete/Edit Course</a></li>
+                        </ul> -->
+                    </li>
+                    
+              
+                    <li><a (click)="onLogout()">Logout</a><span class="icon"><i class="fas fa-sign-out-alt"></i></span></li>
+                </ul>
+            </div>
+        </nav> 
+
+    </div>
+    <div *ngIf="auth">
+        <router-outlet></router-outlet>
+    </div>
+    
+    <div class="start" *ngIf="!auth" style="margin-top: 100px;">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    

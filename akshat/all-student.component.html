@@ -1,21 +1,22 @@
+<div class="body">
 <div class="new-wrapper" *ngIf="present">
     <a [routerLink]="['/admin/addstudent']"  class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" > <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Student</a>
    
     <table>
         <thead>
             <tr>
-                <th>Enr. No.</th>
+                <th>Enroll No.</th>
                 <th>Name</th>
                 <th>Batch</th>
                 <th>Stream</th>
                 <th>Section</th>
                 <th>Email</th>
-                <th></th>
-                <th></th>
+                <th>Edit </th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let student of students">
+            <tr *ngFor="let student of students; let i = index">
                 <td>{{student.enrollment}}</td>
                 <td>{{student.name}}</td>
                 <td>20{{student.batch}}-20{{student.batch+4}}</td>
@@ -23,11 +24,14 @@
                 <td>{{student.section}}</td>
                 <td>{{student.email}}</td>
                 <td>
-                    <button type="button" class="btn" href="#editModal"  data-toggle="modal" data-target="#editModal" >Edit</button>
+                    <button type="button" class="btn btn-link" href="#editModal"  data-toggle="modal" data-target="#editModal" 
+                     (click)="updateTeacherCall(student,i)" >
+                     <i class="fa fa-pencil fa-lg"></i>
+                    </button>
                 </td>
                 <td> 
-                    <button type="button" class="btn danger">
-                        Delete
+                    <button type="button" class="btn btn-link">
+                        <i class="fas fa-trash fa-lg"></i>
                     </button>
                 </td>
             </tr>
@@ -45,97 +49,63 @@
 </div>
 <div class="modal" id="editModal">
     <div class="modal-dialog ">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    
-        <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
-            <h3>Edit Student</h3>
-            <br/>
-            <p id="msg"></p>
-            <div class="signup_field_outer ">
-                <div class="signup__field">
-
-                    <input class="signup__input" type="text" name="name" id="name" required 
-                    ngModel #name="ngModel" />
-                    <label class="signup__label" for="teacher_id">Name</label>
-               </div>
-               <div style="color: #f00;  background-color:#ffe6e6; font-size: 13px;" *ngIf="name.invalid && name.touched">
-                <div class="error" *ngIf="name.errors.required">
-                    Name is required.
-                </div>
-            </div>
-                </div>
-                <div class="signup_field_outer ">
-                <div class="signup__field">
-                    <input class="signup__input" type="text" name="enroll" id="enroll" required 
-                    ngModel  #enroll="ngModel" />
-                    <label class="signup__label" for="teacher_id">Enrollment No.</label>
-               </div>
-               <div style="color: #f00;  background-color:#ffe6e6; font-size: 13px;" *ngIf="enroll.invalid && enroll.touched">
-                <div class="error" *ngIf="enroll.errors.required">
-                    Enrollment number is required.
-                </div>
-            </div>
-                </div>
-
-                <div class="signup_field_outer ">
-                <div class="signup__field">
-                    <input class="signup__input" type="email" name="email" id="email" required 
-                    ngModel email #email="ngModel" />
-                    <label class="signup__label" for="email">Email</label>
-               </div>
-               <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email.invalid && email.touched">
-                <div class="error" *ngIf="email.errors.required">
-                    Email is required.
-                </div>
-                <div class="error" *ngIf="email.errors.email">
-                    Please enter valid email
-                </div>
-            </div>
-                </div>
-                <div class="signup_field_outer ">
-                    <div class="signup__field">
-                        <!-- <input class="signup__input" type="text"  /> -->
-                        <select class="signup__input" name="batch" id="batch" required 
-                        [(ngModel)]="batch" >
-                            <option value="17">2017-2021</option>
-                            <option value="18">2018-2022</option>
-                            <option value="19">2019-2023</option>
-                            <option value="20">2020-2024</option>
-                        </select>
-                        <label class="signup__label" for="department">Batch</label>
-                    </div>
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div *ngIf="!updateSuccessfully">
+                <form class="signup" (ngSubmit)="onSubmit()" #f="ngForm" autocomplete="off">
+                    <h3>Edit Student</h3>
+                    <br/> 
+                    <p id="msg"></p>
+                    <div class="signup_field_outer ">
+                        <div class="signup__field">
+                            <input class="signup__input" type="text" name="name" id="name" required 
+                                [(ngModel)]="updateStudent.name" (keydown)="onkeypress()" #name1="ngModel" />
+                            <label class="signup__label" for="teacher_id">Name</label>
+                        </div>
+                        <div style="color: #f00;  background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid">
+                            <div class="error" *ngIf="name1.errors.required">
+                                Name is required.
+                            </div>
+                        </div>
                     </div>
                     <div class="signup_field_outer ">
-                    <div class="signup__field">
-                        <!-- <input class="signup__input" type="text" name="email" id="email" required /> -->
-                        <select class="signup__input" name="stream" id="stream" required 
-                        [(ngModel)]="stream" >
-                            <option value="1">CSE</option>
-                            <option value="2">IT</option>
-                            <option value="3">ECE</option>
-                            <option value="4">EEE</option>
-                        </select>
-                        <label class="signup__label" for="email">Stream</label>
-                    </div>
+                        <div class="signup__field">
+                            <input class="signup__input" type="text" name="enroll" id="enroll" required 
+                            [(ngModel)]="updateStudent.enrollment" (keydown)="onkeypress()"  #enroll="ngModel" />
+                            <label class="signup__label" for="teacher_id">Enrollment No.</label>
+                        </div>
+                        <div style="color: #f00;  background-color:#ffe6e6; font-size: 13px;" *ngIf="enroll.invalid">
+                            <div class="error" *ngIf="enroll.errors.required">
+                                Enrollment number is required.
+                            </div>
+                        </div>
                     </div>
                     <div class="signup_field_outer ">
-                    <div class="signup__field">
-                        <!-- <input class="signup__input" type="text" name="email" id="email" required /> -->
-                        <select class="signup__input" name="section" id="section" required 
-                        [(ngModel)]="section" >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                        <label class="signup__label" for="email">Section</label>
+                        <div class="signup__field">
+                            <input class="signup__input" type="email" name="email" id="email" required 
+                            [(ngModel)] = "updateStudent.email" (keydown)="onkeypress()" email #email="ngModel" />
+                            <label class="signup__label" for="email">Email</label>
+                        </div>
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email.invalid">
+                            <div class="error" *ngIf="email.errors.required">
+                                Email is required.
+                            </div>
+                            <div class="error" *ngIf="email.errors.email">
+                                Please enter valid email
+                            </div>
+                        </div>
                     </div>
-                    </div>
-            
-            
-            <button type="submit" class="addsub" id="submit" >Update <span class="glyphicon glyphicon-send"></span></button>
-        </form>
-      </div>
+                    <button type="submit" class="addsub" id="submit" [disabled]="filled || !f.valid || !changeUpdate" >
+                        Update <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </form>
+            </div>
+            <div *ngIf="updateSuccessfully" style="margin-top: 40px; margin-left: 50px;">
+                Student is updated successfully.
+            </div>
+        </div>
     </div>
-    </div>
+</div>
+</div>>

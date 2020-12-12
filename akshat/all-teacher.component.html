@@ -1,17 +1,20 @@
-<div class="new-wrapper" *ngIf="present">
+<div class="body">
+    <div class="new-wrapper" *ngIf="present">
     <a [routerLink] = "['/admin/addteacher']"  class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8" > <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Teacher</a>
         <table>
             <thead>
                 <tr>
-                    <th>Teacher ID</th>
+                    <th>S.No.</th>
                     <th>Name</th>
                     <th>Department</th>
                     <th>Email</th>
-                    <th>Contact No.</th>
-                    <th></th>
-                    <th></th>
-                </tr>
+              
+                    <th>Edit</th>
+                    <th>Delete</th>
+            </tr>
+            
             </thead>
+         
             <tbody>
             <tr *ngFor="let teacher of teachers; let i = index">
                 <td>{{i+1}}</td>
@@ -19,13 +22,17 @@
                 <td>{{teacher.department}}</td>
                 <td>{{teacher.email}}</td>
                 <td *ngIf="teacher.contact !== ''; else nonumber">{{teacher.contant}}</td>
-                <ng-template #nonumber><span class="elsepart">fadlfkjaldkjfalk</span></ng-template>
+               
                 <td>
-                    <button type="button" class="btn" href="#editModal"  data-toggle="modal" data-target="#editModal" >Edit</button>
+                    <button type="button" class="btn btn-link" href="#editModal"  data-toggle="modal" data-target="#editModal" 
+                    (click)="updateTeacherCall(teacher,i)">   
+               <i class="fa fa-pencil fa-lg"></i>
+                    </button>
                 </td>
+                
                 <td> 
-                    <button type="button" class="btn danger">
-                        Delete
+                    <button type="button" class="btn btn-link">
+                        <i class="fas fa-trash fa-lg"></i>
                     </button>
                 </td>
             </tr>
@@ -45,59 +52,64 @@
 
 <div class="modal" id="editModal">
     <div class="modal-dialog ">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    
-        <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
-            <h3>Edit Teacher</h3>
-            <br/>
-            <p id="msg"></p>
-            <div class="signup_field_outer">
-                <div class="signup__field">
-                    <input class="signup__input" type="text" name="name" id="name" required autofocus
-                    ngModel #name="ngModel" />
-                    <label class="signup__label" for="name">Teacher Name</label>
-                </div>
-                <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name.invalid && name.touched">
-                <div class="error" *ngIf="name.errors.required">
-                    Name is required.
-                </div>
-            </div>
-                </div>
-            <div class="signup_field_outer">
-                <div class="signup__field">
-                    <input class="signup__input" type="text" name="department" id="department" required 
-                    ngModel department #department="ngModel" />
-                    <label class="signup__label" for="department">Department</label>
-                </div>
-                <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="department.invalid && department.touched">
-                <div class="error" *ngIf="department.errors.required">
-                    Department is required.
-                </div>
-            </div>
-            </div>
-                <div class="signup_field_outer">
-                <div class="signup__field">
-                    <input class="signup__input" type="email" name="email" id="email" required 
-                    ngModel email #email="ngModel" />
-                    <label class="signup__label" for="email">Email</label>
-                    </div>
-                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email.invalid && email.touched">
-                        <div class="error" *ngIf="email.errors.required">
-                            Email is required.
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div *ngIf="!updateSuccessfully">
+                <form class="signup" (ngSubmit)="onSubmit()" #f="ngForm" autocomplete="off">
+                    <h3>Edit Teacher</h3>
+                    <br/>
+                    <p id="msg"></p>
+                    <div class="signup_field_outer">
+                        <div class="signup__field">
+                            <input class="signup__input" type="text" name="name" id="name" required
+                            [(ngModel)]="updateTeacher.name" (keydown)="onkeypress()" #name1="ngModel" />
+                            <label class="signup__label" for="name">Teacher Name</label>
                         </div>
-                        <div class="error" *ngIf="email.errors.email">
-                            Please enter valid email
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid">
+                            <div class="error" *ngIf="name1.errors.required">
+                                Name is required.
+                            </div>
                         </div>
                     </div>
-                    
-                </div>
+                    <div class="signup_field_outer">
+                        <div class="signup__field">
+                            <input class="signup__input" type="text" name="department" id="department" required 
+                            [(ngModel)]="updateTeacher.department" (keydown)="onkeypress()" #department="ngModel" />
+                            <label class="signup__label" for="department">Department</label>
+                        </div>
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="department.invalid">
+                            <div class="error" *ngIf="department.errors.required">
+                                Department is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="signup_field_outer">
+                        <div class="signup__field">
+                            <input class="signup__input" type="email" name="email" id="email" required 
+                            [(ngModel)]="updateTeacher.email" (keydown)="onkeypress()" email #email="ngModel" />
+                            <label class="signup__label" for="email">Email</label>
+                        </div>
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email.invalid">
+                            <div class="error" *ngIf="email.errors.required">
+                                Email is required.
+                            </div>
+                            <div class="error" *ngIf="email.errors.email">
+                                Please enter valid email
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="addsub" id="submit" [disabled]="filled || !f.valid || !changeUpdate">
+                        Update <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </form>
+            </div>
             
-            
-            <button type="submit" class="addsub" id="submit" >Update <span class="glyphicon glyphicon-send"></span></button>
-        </form>
-      </div>
+            <div *ngIf="updateSuccessfully" style="margin-top: 40px; margin-left: 50px;">
+                Teacher is updated successfully.
+            </div>
+        </div>
     </div>
-    </div>
+</div>
+</div>

@@ -10,7 +10,7 @@
         </div>
         <div  id="Todo" class="collapse ">
             <div class="row">
-                <div class="column" *ngFor="let assignment of assignmentsPending">
+                <div class="column" *ngFor="let assignment of assignmentsPending; let i = index">
                     <div class="card">
                         <div class="card-body col-md-10" style="height:30px"></div>
                         <div class="dropdown" style="float:right">
@@ -18,8 +18,8 @@
                                 <i class="fas fa-ellipsis-h iconstyle"></i>
                             </div>
                             <ul class="dropdown-menu">
-                                <li (click)="submitAssignmentCalls(assignment._id)" ><a href="#submitModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-upload"></i> Submit</a></li>
-                                <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
+                                <li (click)="submitUpdateAssignmentCalls(assignment._id)" ><a href="#submitModal"  data-toggle="modal" data-target="#submitModal"><i class="fa fa-upload"></i> Submit</a></li>
+                                <li (click)="getDescription(assignment._id,i,'pending')" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
                             </ul>    
                         </div>
                         <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
         <div id="Completed" class="collapse">
             <div class="row">
-                <div class="column" *ngFor="let assignment of assignmentsComplete">
+                <div class="column" *ngFor="let assignment of assignmentsComplete; let i = index">
                     <div class="card">
                         <div class="card-body col-md-10" style="height:30px"></div>
                         <div class="dropdown" style="float:right">
@@ -51,11 +51,11 @@
                                 <i class="fas fa-ellipsis-h iconstyle"></i>
                             </div>
                             <ul class="dropdown-menu">
-                                <li><a href="#updateModal"  data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i> Update</a></li>
-                                <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
-                                <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                <li *ngIf="assignment.status !== 'accepted'" (click)="submitUpdateAssignmentCalls(assignment._id)"><a href="#updateModal"  data-toggle="modal" data-target="#updateModal"><i class="fa fa-edit"></i> Update</a></li>
+                                <li (click)="getDescription(assignment._id,i,'complete')" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
+                                <!-- <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li> -->
                                 <li><a>Status: {{assignment.status}}</a></li>
-                                <li><a>CreatedAt: {{assignment.createdAt}}</a></li>
+                                <!-- <li><a>CreatedAt: {{assignment.createdAt}}</a></li> -->
                                 
                             </ul>    
                         </div>
@@ -82,8 +82,6 @@
             </div>
             <div class="modal-body"> 
                 <div *ngIf="!submitSuccessfully">
-                
-                  
                     <div class="dropzone" id="dropzone" (drop)="drop($event)" 
                     (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
                     <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
@@ -136,6 +134,18 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-header" *ngIf="!desSectionPending && !getDescriptionLoading">
+                <h4 style="text-align: center;" class="modal-title">Submission Details</h4> 
+            </div>
+            <div class="modal-body" *ngIf="!desSectionPending && !getDescriptionLoading">
+                <div style="overflow-x:auto;">
+                    <div>
+                        <table style="margin-left: 20px;">
+                            <tr><td>Created at:</td><td class="modal-text">{{assignmentDescription.createdAt}}</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -149,16 +159,15 @@
             </div>
             <div class="modal-body"> 
                 <div *ngIf="!submitSuccessfully">
-                
-                   
-                    <div class="dropzone" id="dropzone" (drop)="drop($event)" 
-                    (dragover)="dragOverEffect()" (dragleave)="dragLeaveEffect()" >
+                    
+                    <div class="dropzone" id="dropzone-update" (drop)="dropUpdate($event)" 
+                    (dragover)="dragOverEffectUpdate()" (dragleave)="dragLeaveEffectUpdate()" >
                     <div class="file" *ngIf="!AssignmentFile"><i  class="fas fa-cloud-upload-alt cloudstyle"></i></div>
                     <div class="file" *ngIf="AssignmentFile">{{AssignmentFile.name}}</div>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    Drop file here or <label for="file-upload" class="btn btn-link">Select File
+                    Drop file here or <label for="file-upload1" class="btn btn-link">Select File
                         </label>
-                        <input id="file-upload" type="file"  (change)="onFileSelected($event)"/>
+                        <input id="file-upload1" type="file"  (change)="onFileSelected($event)"/>
                 
                     </div>
                     <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;">
@@ -171,11 +180,11 @@
                     </div>
                     <br />
                     <br />
-                    <button class="btn btn-primary" id="submit" type="submit" (click)="submitAssignment()"
+                    <button class="btn btn-primary" id="update" type="submit" (click)="updateAssignment()"
                         [disabled]="(AssignmentFile === null) || filled">Upload</button>
                 </div>
                 <div *ngIf="submitSuccessfully">
-                    Your assignment is submitted successfully.
+                    Your assignment is updated successfully.
                 </div>
             </div>
         </div>
