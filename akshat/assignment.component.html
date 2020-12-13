@@ -1,12 +1,12 @@
 <div class="body">
-    <a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-8 col-offset-7" data-toggle="modal" data-target="#NewAssignment"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Assignment</a>
+    <a href="" class="btn btn-default add-button  col-md-offset-10 col-xs-offset-5 col-sm-offset-9 " data-toggle="modal" data-target="#NewAssignment"> <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Assignment</a>
             <!-- Modal -->   
     <div class="modal fade" id="NewAssignment" role="dialog">
         <div class="modal-dialog">
         
             <!-- Modal content-->
             <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
@@ -19,7 +19,8 @@
                             ngModel name1 #name1="ngModel" />
                             <label class="signup__label" for="name">Name</label>
                         </div>
-                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid && name1.touched">
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" 
+                         *ngIf="name1.invalid && name1.touched">
                             <div class="error" *ngIf="name1.errors.required">
                                 Assignment name is required.
                             </div>
@@ -39,7 +40,8 @@
                             <label class="signup__label" for="last">Last date</label>
                             
                         </div>
-                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="last.invalid && last.touched">
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" 
+                         *ngIf="last.invalid && last.touched">
                             <div class="error" *ngIf="last.errors.required">
                                 Last data of submission is required.
                             </div>
@@ -58,7 +60,10 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="submit" id="submit" [disabled]="filled || !f.valid || !fileSelected" >Add <span class="glyphicon glyphicon-send"></span></button>
+                    <button type="submit" class="submit" id="submit" 
+                    [disabled]="filled || !f.valid || !fileSelected" >
+                        Add <span class="glyphicon glyphicon-send"></span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -76,32 +81,40 @@
                 </div>
             </div> -->
     
-            <div class="column" *ngFor="let assignment of allAssignment">
+            <div class="column" *ngFor="let assignment of allAssignment; let i = index">
                 <div class="card">
-                    <div class="card-body col-md-10" style="height:30px" ></div>
+                    <div class="card-body col-md-10 col-xs-10 col-sm-10" style="height:30px" ></div>
                     <div class="dropdown" style="float:right">
-                                <div data-toggle="dropdown">
-                                    <i class="fas fa-ellipsis-h iconstyle"></i>
-                                </div>
-                                <ul class="dropdown-menu">
-                                    <li [routerLink]="['/teacher','assignment','submissions']"
-                                        [queryParams]="{subid: subid}"  [fragment]="assignment._id" >
-                                        <a ><i class="fa fa-upload"></i> Submissions</a>
-                                    </li>
-                                    <li><a href="#editModal" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i>  Edit</a></li>
-                                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                    <li (click)="getDescription(assignment._id)" ><a href="#infoModal" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info-circle"></i>  Info</a></li>
-                                </ul>    
-                            </div>
-                        
-                            <div class="card-body">
-                    <div class="assignment-name">
-                    <h5>{{assignment.name}}</h5>
+                        <div data-toggle="dropdown">
+                            <i class="fas fa-ellipsis-h iconstyle"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['/teacher','assignment','submissions']"
+                                [queryParams]="{subid: subid}"  [fragment]="assignment._id" >
+                                <a ><i class="fa fa-upload"></i> Submissions</a>
+                            </li>
+                            <li (click)="updateLastDateCalls(assignment.last,assignment._id,i)" >
+                                <a href="#editModal" data-toggle="modal" data-target="#editModal">
+                                    <i class="fa fa-edit"></i>  Edit
+                                </a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                            <li (click)="getDescriptionAssignment(assignment._id,i)" >
+                                <a href="#infoModal" data-toggle="modal" data-target="#infoModal">
+                                    <i class="fas fa-info-circle"></i>  Info
+                                </a>
+                            </li>
+                        </ul>    
                     </div>
-                    <br/>
-                    <h6>{{room}}</h6>
-                    <h6>{{sem}} sem</h6>
-                </div>
+                        
+                    <div class="card-body">
+                        <div class="assignment-name">
+                        <h5>{{assignment.name}}</h5>
+                        </div>
+                        <br/>
+                        <h6>{{room}}</h6>
+                        <h6>{{sem}} sem</h6>
+                    </div>
                 </div>
             </div>
         
@@ -132,21 +145,26 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="close" data-dismiss="modal">&times;</button>
-                <h3>Assignment Details</h3> 
+                <button class="close"  data-dismiss="modal">&times;</button>
+              <h4>Assignment Details</h4> 
             </div>
             <div class="modal-body">
                 <div style="overflow-x:auto;">
-                 <!--   <div *ngIf="getDescriptionLoading">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.75 22c0 .966-.783 1.75-1.75 1.75s-1.75-.784-1.75-1.75.783-1.75 1.75-1.75 1.75.784 1.75 1.75zm-1.75-22c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 10.75c.689 0 1.249.561 1.249 1.25 0 .69-.56 1.25-1.249 1.25-.69 0-1.249-.559-1.249-1.25 0-.689.559-1.25 1.249-1.25zm-22 1.25c0 1.105.896 2 2 2s2-.895 2-2c0-1.104-.896-2-2-2s-2 .896-2 2zm19-8c.551 0 1 .449 1 1 0 .553-.449 1.002-1 1-.551 0-1-.447-1-.998 0-.553.449-1.002 1-1.002zm0 13.5c.828 0 1.5.672 1.5 1.5s-.672 1.501-1.502 1.5c-.826 0-1.498-.671-1.498-1.499 0-.829.672-1.501 1.5-1.501zm-14-14.5c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2zm0 14c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2z"/></svg>
+                   <div *ngIf="getAssignmentLoading">
+             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M13.75 22c0 .966-.783 1.75-1.75 1.75s-1.75-.784-1.75-1.75.783-1.75 1.75-1.75 1.75.784 1.75 1.75zm-1.75-22c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 10.75c.689 0 1.249.561 1.249 1.25 0 .69-.56 1.25-1.249 1.25-.69 0-1.249-.559-1.249-1.25 0-.689.559-1.25 1.249-1.25zm-22 1.25c0 1.105.896 2 2 2s2-.895 2-2c0-1.104-.896-2-2-2s-2 .896-2 2zm19-8c.551 0 1 .449 1 1 0 .553-.449 1.002-1 1-.551 0-1-.447-1-.998 0-.553.449-1.002 1-1.002zm0 13.5c.828 0 1.5.672 1.5 1.5s-.672 1.501-1.502 1.5c-.826 0-1.498-.671-1.498-1.499 0-.829.672-1.501 1.5-1.501zm-14-14.5c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2zm0 14c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2z"/></svg>
                     </div>
-                    <div *ngIf="!getDescriptionLoading">  -->
+                    <div *ngIf="!getAssignmentLoading"> 
                         <table style="margin-left: 20px;">
-                           <tr><td >Last Date:</td><td class="modal-text">assignmentDescription.last</td></tr>
-                            <tr><td>Description:</td><td class="modal-text">assignmentDescription.description</td></tr>
-                            <tr><td>Teacher:</td><td class="modal-text">assignmentDescription.teachername(assignmentDescription.teacherdept)</td></tr>
+                            <tr>
+                                <td >Last Date:</td>
+                                <td class="modal-text">{{assignmentDetailLastdate}}</td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td class="modal-text">{{assignmentDetailDescription}}</td>
+                            </tr>
                         </table>
-                  <!--  </div>-->
+                   </div>
                 </div>
             </div>
         </div>
@@ -156,60 +174,40 @@
 <div class="modal" id="editModal">
     <div class="modal-dialog ">
         <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <form class="signup" (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
-                <h3>EDIT ASSIGNMENT</h3>
-                <br/>
-                <p id="msg"></p>
-                <div class="signup__field_outer ">
-                    <div class="signup__field">
-                        <input class="signup__input" type="text" name="name" id="name" required 
-                        ngModel name1 #name1="ngModel" />
-                        <label class="signup__label" for="name">Name</label>
-                    </div>
-                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="name1.invalid && name1.touched">
-                        <div class="error" *ngIf="name1.errors.required">
-                            Assignment name is required.
+            <div *ngIf="!updateLastDateSuccessfully">
+                <form class="signup" (ngSubmit)="updateSubmissionLastDate()" #up="ngForm" autocomplete="off">
+                    <h4>UPDATE ASSIGNMENT</h4>
+                    <br/>
+                    <p id="msg"></p>
+                    <div class="signup__field_outer ">
+                        <div class="signup__field">
+                            <input class="signup__input" type="date" name="update_last" required 
+                            [(ngModel)]="updateLastDate" last1 #last1="ngModel" />
+                            <label class="signup__label" for="update_last">Last date</label>
+                        </div>
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="last1.invalid">
+                            <div class="error" *ngIf="last1.errors.required">
+                                Last data of submission is required.
+                            </div>
+                        </div>
+                        <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="updateLastDate < todaysDate">
+                            <div class="error">
+                                Date must be in future.
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="signup__field_outer ">
-                    <div class="signup__field">
-                        <input class="signup__input" type="text" name="description" id="description"
-                        ngModel />
-                        <label  class="signup__label" for="name">Description</label>
-                    </div>
-                </div>
-                <div class="signup__field_outer ">
-                    <div class="signup__field">
-                        <input class="signup__input" type="date" name="last" id="last" required 
-                        ngModel last #last="ngModel" />
-                        <label class="signup__label" for="last">Last date</label>
-                        
-                    </div>
-                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="last.invalid && last.touched">
-                        <div class="error" *ngIf="last.errors.required">
-                            Last data of submission is required.
-                        </div>
-                    </div>
-                </div>
-                <div class="signup__field_outer ">
-                    <div class="signup__field">
-            
-                        <!-- <label class="signup__label" for="last">Last data</label> -->
-                    </div>
-                    <input class="signup__input" type="file" name="document" id="document"
-                    (change)="onFileSelected($event)" />
-                    <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="!docFormat">
-                        <div class="error">
-                            Please choose of pdf type file only
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="submit" id="submit" [disabled]="filled || !f.valid || !fileSelected" >Update <span class="glyphicon glyphicon-send"></span></button>
-            </form>
+                    <button type="submit" class="submit" id="updatelast" 
+                     [disabled]="filledUpdateDate || (updateLastDate < todaysDate) || (updateLastDate == currentLastDate)" >
+                        Update <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </form>
+            </div>
+            <div *ngIf="updateLastDateSuccessfully">
+                Last date update successfully.
+            </div>
         </div>
     </div>
 </div>

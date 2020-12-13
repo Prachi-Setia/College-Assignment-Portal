@@ -26,7 +26,7 @@ transition: all .2s ease-out ;
 }
 table tbody tr:hover{
    transform: scale(1.02);
-   font-weight: 600;
+  
 
    -webkit-box-shadow: 0 0 10px #808080;
    box-shadow: 0 0 10px #808080;
@@ -133,12 +133,7 @@ animation-delay: 1.5s;
 
 
 /*  Button */
-.btn-link{
-   color:#595959;
-}
-.btn-link:hover{
-    color: black;
-}
+
 .addsub{
 margin-top: 20px;
 padding: 12px 0;

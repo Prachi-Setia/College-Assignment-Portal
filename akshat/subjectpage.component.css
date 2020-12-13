@@ -39,7 +39,7 @@ FORM
 }
 
 .subject_name {
-    margin-top: 30px;
+    margin-top: 10px;
    display: flex;
     justify-content: center;
 }
@@ -159,14 +159,27 @@ button {
 }
 
 /* Responsive columns */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .column {
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
 }
-
+@media screen and (min-width:500px) and (max-width: 800px) {
+    .column {
+        width: 50%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+@media screen and (min-width:800px) and (max-width: 1000px) {
+    .column {
+        width: 33%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
 /* Style the counter cards */
 .card {
     color:#325181;
@@ -191,11 +204,14 @@ border-radius: 10px;
     border: none
     
 }
-.dropdown:hover{
-    background-color: #d9d9d9;
-    width:20px;
-    border-radius:4px;
+.delete-icon{
+   font-size:12px;
+    cursor: pointer;
+    color:#595959;
+}
+.delete-icon:hover {
 
+font-size:14px;
 }
 
 .iconstyle{
@@ -203,4 +219,3 @@ border-radius: 10px;
   font-size: 12px;
 
 }
-

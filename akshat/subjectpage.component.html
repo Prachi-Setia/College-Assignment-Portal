@@ -1,88 +1,79 @@
 <div class="body">
     <a href="" data-toggle="modal" data-target="#NewSubject" style="margin-bottom:20px;"
- class="btn btn-default add-button  col-md-offset-10  col-xs-offset-8" (click)="getName()">
-    <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Subject
-</a>
-
-<!-- Modal -->   
-<div class="modal fade" id="NewSubject" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <form class="signup" (ngSubmit)="onSubmit()" #f="ngForm" autocomplete="off">
-                <h3>ADD SUBJECT</h3>
-                <br/>
-                <div class="signup__field">
-                    <select class="signup__input" type="text" name="name" id="name" required 
-                     [(ngModel)] = "formName" >
-                        <option *ngFor="let name of subjectsName" value={{name}}>{{name}}</option>
-                    </select>
-                    <label class="signup__label" for="subject_name">Subject Name</label>
-                </div>
-            
-                <div class="signup__field">
-                    <select class="signup__input" type="text" name="stream" id="stream" required
-                    [(ngModel)]="formStream" >
-                        <option value="1">CSE</option>
-                        <option value="2">IT</option>
-                        <option value="3">ECE</option>
-                        <option value="4">EEE</option>
-                    </select>
-                    <label class="signup__label" for="stream">Stream</label>
-                </div>
-
-                <div class="signup__field">
-                    <select class="signup__input" type="text" name="semester" id="semester" required
-                     [(ngModel)]="formSemester" >
-                        <option *ngFor="let sem of semesters" value={{sem}}>{{sem}}</option>
-                    </select>
-                    <label class="signup__label" for="semester">Semester</label>
-                </div>
-
-                <div class="signup__field">
-                    <select class="signup__input" type="text" name="section" id="section" required
-                     [(ngModel)] = "formSection">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                    <label class="signup__label" for="section">Section</label>
-                </div>
-
-                <button type="submit" class="submit" id="submit" [disabled]="filled && !f.valid" >Add <span class="glyphicon glyphicon-send"></span></button>
-            </form>
+     class="btn btn-default add-button  col-md-offset-10  col-xs-offset-5 col-sm-offset-10" (click)="getName()">
+        <span class="icon"><i class="fas fa-user-plus"></i></span>&nbsp; New Subject
+    </a>
+    
+    <!-- Modal -->   
+    <div class="modal fade" id="NewSubject" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="signup" (ngSubmit)="onSubmit()" #f="ngForm" autocomplete="off">
+                    <h3>ADD SUBJECT</h3>
+                    <br/>
+                    <div class="signup__field">
+                        <select class="signup__input" type="text" name="name" id="name" required 
+                         [(ngModel)] = "formName" >
+                            <option *ngFor="let name of subjectsName" value={{name}}>{{name}}</option>
+                        </select>
+                        <label class="signup__label" for="subject_name">Subject Name</label>
+                    </div>
+                
+                    <div class="signup__field">
+                        <select class="signup__input" type="text" name="stream" id="stream" required
+                        [(ngModel)]="formStream" >
+                            <option value="1">CSE</option>
+                            <option value="2">IT</option>
+                            <option value="3">ECE</option>
+                            <option value="4">EEE</option>
+                        </select>
+                        <label class="signup__label" for="stream">Stream</label>
+                    </div>
+    
+                    <div class="signup__field">
+                        <select class="signup__input" type="text" name="semester" id="semester" required
+                         [(ngModel)]="formSemester" >
+                            <option *ngFor="let sem of semesters" value={{sem}}>{{sem}}</option>
+                        </select>
+                        <label class="signup__label" for="semester">Semester</label>
+                    </div>
+    
+                    <div class="signup__field">
+                        <select class="signup__input" type="text" name="section" id="section" required
+                         [(ngModel)] = "formSection">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <label class="signup__label" for="section">Section</label>
+                    </div>
+    
+                    <button type="submit" class="submit" id="submit" [disabled]="filled && !f.valid" >Add <span class="glyphicon glyphicon-send"></span></button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-          
-<div id="main-contents">
-    <div class="row">
-        <div style="cursor: pointer;" class="column" *ngFor="let subject of showMySubject">
-            <div class="card">
-            
-           <div class="card-body col-md-10" style="height:30px" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}"></div>
-          <div class="dropdown" style="float:right">
-                    <div data-toggle="dropdown">
-                        <i class="fas fa-ellipsis-h iconstyle"></i>
+              
+    <div id="main-contents">
+        <div class="row">
+            <div style="cursor: pointer;" class="column" *ngFor="let subject of showMySubject">
+                <div class="card">
+                    <div class="card-body col-md-11 col-xs-11 col-sm-11" style="height:30px" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}"></div>
+                   <a class="delete-icon" href="#"><i class="fas fa-trash"></i></a>
+               
+                    <div class="card-body" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}">
+                        <div class="subject_name">
+                            <h5>{{subject.name}}</h5>
+                        </div>
+                    
+                        <h6>{{subject.stream}}-{{subject.section}}</h6>
+                        <h6>{{subject.sem}} semester</h6>
                     </div>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li><a href="#"><i class="fa fa-edit"></i>  Edit</a></li>
-                    </ul>    
-                </div>
-           
-                <div class="card-body" [routerLink] = "['/teacher/assignments']" [queryParams]="{subid:subject.subid, bsss: subject.bsss}">
-                <div class="subject_name">
-                    <h5>{{subject.name}}</h5>
-                </div>
-                <br/>
-                <h6>{{subject.stream}}-{{subject.section}}</h6>
-                <h6>{{subject.sem}} semester</h6>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

@@ -27,7 +27,7 @@
       }
       table tbody tr:hover{
          transform: scale(1.02);
-         font-weight: 600;
+     
       
          -webkit-box-shadow: 0 0 10px #808080;
          box-shadow: 0 0 10px #808080;

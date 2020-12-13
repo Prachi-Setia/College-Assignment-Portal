@@ -1,45 +1,64 @@
-.accept{
-    color:   #408000;
+.iconstyle{
+    color: #666666;
 }
-.reject{
-    color: #cc0000;
+.iconstyle:hover{
+    color:#333333;
 }
+
 .body-heading{
     font-size: 20px;
     text-align: center;
     color: #595959;
 }
+.body{
+    background-color:#ffffff;
+    min-height: 500px;
+  
+  }
+ 
+
+/*table*/
 table {
     font-family: 'Arial';
     margin: 25px auto;
     margin-top:50px;
     margin-bottom:100px;
-    border-collapse: collapse;
-    border: 1px solid #eee;
-    border-bottom: 2px solid #3e65a0;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
-}
-table tr:hover {
-    background: #d9d9d9;
-}
-table tr:hover td {
-    color: #555;
-}
-table th, table td {
-    color: #999;
-    border: 1px solid #eee;
+    
+    background-color: #edf1f8;
+    font-size:15px;
+    
+    
+    }
+    table tr{
+    transition: all .2s ease-out ;
+    
+    }
+    table tbody tr:hover{
+       transform: scale(1.02);
+
+    
+       -webkit-box-shadow: 0 0 10px #808080;
+       box-shadow: 0 0 10px #808080;
+      
+    }
+    
+    
+    
+     table td {
+    color: #404040;
+    border: none;
     padding: 12px 35px;
-    border-collapse: collapse;
-}
-table th {
-    background: #3e65a0;
+    
+    }
+    table th {
+    background: #243a5c;
     color: #fff;
-    text-transform: uppercase;
-    font-size: 12px;
-}
-table th.last {
-    border-right: none;
-}
+    font-size: 15px;
+    border:none;
+    padding: 12px 35px;
+    
+    }
+
 
 .start{
     display: flex;
@@ -125,8 +144,8 @@ table th.last {
   .tooltip1 .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: #333333;
-    opacity:0.9;
+    background-color: #000;
+    /* opacity:0.9; */
     color: #fff;
     text-align: center;
     border-radius: 4px;
@@ -146,9 +165,21 @@ table th.last {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #333333 transparent transparent transparent;
+    border-color: #000 transparent transparent transparent;
   }
   
   .tooltip1:hover .tooltiptext {
     visibility: visible;
+  }
+
+  svg {
+       
+    animation: spin 2s linear infinite;
+ 
+  }
+
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
