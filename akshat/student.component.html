@@ -1,0 +1,34 @@
+<nav class="navbar-inverse ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="color:white;" class="navbar-brand">{{name}}</a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+       
+        <ul class="nav navbar-nav navbar-right">
+            <li (click)="resetPassword()" *ngIf="!reset"><a ><span class="fa fa-lock"></span> Reset password</a></li>
+            <li [routerLink]="['/student']" ><a><span class="fas fa-book-open"></span> Subjects</a></li>
+            <li><a  (click)="onLogout()"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<div *ngIf="auth">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="start" *ngIf="!auth" style="margin-top: 100px;">
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>

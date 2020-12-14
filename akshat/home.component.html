@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="col-md-7 col-xs-12">
+   <img style="width:800px; height:550px;" src="https://schoolbook.getmyuni.com/assets/images/rev_img/48353__28787/1508926760IMG_20171011_211411-01-01.jpeg">
+    </div>
+
+    <div class="col-md-4 col-xs-12 col-md-offset-1">
+        <div class="form-structor">
+            <form class="login form" id="login" (ngSubmit) = "onSubmit()" #f="ngForm">
+                <h2 class="form-title" (click)="toLogin()" ><span></span>Login</h2>
+                <div class="form-holder">
+                    <p style="color: rgb(247, 71, 71); text-align:center" id="msg"></p>
+                    <br/>
+                    <select name="authority" id="authority" class="input" placeholder="type" value="student"
+                    [(ngModel)]='authority'>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <br />
+                    <input [type]="authority==='student'?'number':'email'" name="email" class="input" [placeholder]="authority==='student'?'Enrollment number':'Email'" 
+                    required ngModel email #email="ngModel" autocomplete="off" />
+                    <div style="color: #f00; font-size: 13px; text-align:center" *ngIf="email.invalid && email.touched">
+                        <div class="error" *ngIf="email.errors.required">
+                            <div *ngIf="authority==='student'">
+                                Enrollment number is required
+                            </div>
+                            <div *ngIf="authority !== 'student'">
+                                Email is required.
+                            </div>
+                        </div>
+                        <div *ngIf="email.errors.email && authority !== 'student'">
+                            Please enter valid email
+                        </div>
+                    </div>
+                    <br/>
+                    <input type="password" name="password" class="input" placeholder="Password" 
+                    required ngModel #password="ngModel"  />
+                    <div style="color: #f00; font-size: 13px;  text-align:center" *ngIf="password.invalid && password.touched">
+                        <div class="error" *ngIf="password.errors.required">
+                            Password is required.
+                        </div>
+                        <!-- <div *ngIf="password.errors.pattern">
+                            Password must contain a lowercase, a uppercase letter, one digit, one special case letter and minimum of 8 digit
+                        </div> -->
+                    </div>
+                </div>
+                <button type="submit" id="submit" class="submit-btn" [disabled]="(!f.valid && authority!=='student') || (!password.valid && authority==='student') || filled">Login</button>
+            </form>
+
+
+            <div class="forget slide-up" id="forget">
+                <div class="center">
+                    <h2 class="form-title" (click)="toForget()" >Forgot Password<span>??</span></h2>
+                 
+
+            <div  *ngIf="!forgetLinkSendSuccessfully">
+                <p style=" color: #f00; 
+               
+                 font-size: 13px;
+                 text-align:center;" id="forgetmsg"></p>
+            </div>
+            <div  *ngIf="forgetLinkSendSuccessfully">
+            <p style="  font-size: 15px;
+            text-align:center; margin-top:30px; color:#666666">Link has been sent to your gmail
+             <br/><br/> <a href="https://mail.google.com/mail/u/0/" >Continue <i class="fas fa-arrow-right iconstyle"></i></a></p>
+            </div>
+         
+                    <div *ngIf="!forgetLinkSendSuccessfully">
+                
+                        <div class="form-holder">
+                            <select name="authority" class="input" placeholder="type"
+                            [(ngModel)]="forgetAuthority">
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <br/>
+                            <input type="email" name="email" class="input" placeholder="Email" required
+                            [(ngModel)]="forgetEmail" email #email1="ngModel" />
+                            <div style="color: #f00; background-color:#ffe6e6; font-size: 13px;" *ngIf="email1.invalid && email1.touched">
+                                <div class="error" *ngIf="email1.errors.required">
+                                    &nbsp;   &nbsp; Email is required.
+                                </div>
+                                <div *ngIf="email1.errors.email" style="text-align:center">
+                                 Please enter valid email.
+                                </div>
+                            </div>
+                        </div>
+                        <button (click)="resetPassword()" id="forgetsubmit" type="submit" class="submit-btn" [disabled]="forgetFilled || !email1.valid" >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
